@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const plans = [
   {
@@ -44,7 +45,7 @@ const plans = [
 ];
 
 export default function PricingCards() {
-  const [selected, setSelected] = useState<string | null>(null);
+  const router = useRouter();
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
@@ -56,39 +57,18 @@ export default function PricingCards() {
       }}
     >
       {plans.map((plan) => {
-        const isSelected = selected === plan.name;
         const isHovered = hovered === plan.name;
 
-        const borderColor = isSelected
-          ? "#1D4ED8"
-          : isHovered
-          ? "#2563EB"
-          : plan.highlighted
-          ? "#2563EB"
-          : "#E2E8F0";
-
-        const borderWidth = isSelected || plan.highlighted ? 2 : isHovered ? 2 : 1;
-
-        const bgColor = isSelected
-          ? "#DBEAFE"
-          : plan.highlighted
-          ? "#EFF6FF"
-          : isHovered
-          ? "#F8FAFC"
-          : "white";
-
-        const shadow = isSelected
-          ? "0 8px 30px rgba(37, 99, 235, 0.25)"
-          : isHovered
-          ? "0 8px 24px rgba(37, 99, 235, 0.12)"
-          : "none";
-
-        const scale = isSelected ? "scale(1.03)" : isHovered ? "scale(1.015)" : "scale(1)";
+        const borderColor = isHovered ? "#2563EB" : plan.highlighted ? "#2563EB" : "#E2E8F0";
+        const borderWidth = plan.highlighted || isHovered ? 2 : 1;
+        const bgColor = plan.highlighted ? "#EFF6FF" : isHovered ? "#F8FAFC" : "white";
+        const shadow = isHovered ? "0 8px 24px rgba(37, 99, 235, 0.12)" : "none";
+        const scale = isHovered ? "scale(1.015)" : "scale(1)";
 
         return (
           <div
             key={plan.name}
-            onClick={() => setSelected(isSelected ? null : plan.name)}
+            onClick={() => router.push(plan.href)}
             onMouseEnter={() => setHovered(plan.name)}
             onMouseLeave={() => setHovered(null)}
             style={{
@@ -121,29 +101,6 @@ export default function PricingCards() {
                 }}
               >
                 MAIS POPULAR
-              </div>
-            )}
-
-            {isSelected && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: 14,
-                  right: 14,
-                  width: 22,
-                  height: 22,
-                  borderRadius: "50%",
-                  background: "#2563EB",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "white",
-                  fontSize: "0.75rem",
-                  fontWeight: 800,
-                  flexShrink: 0,
-                }}
-              >
-                ✓
               </div>
             )}
 

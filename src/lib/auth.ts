@@ -5,15 +5,15 @@ export async function getUserByEmail(email: string) {
   return prisma.user.findUnique({ where: { email } });
 }
 
-export async function createUser(name: string, email: string, password: string) {
+export async function createUser(name: string, email: string, password: string, plan = "TRIAL") {
   const hashed = await bcrypt.hash(password, 12);
   const user = await prisma.user.create({
     data: {
       name,
       email,
       password: hashed,
-      plan: "TRIAL",
-      trialEndsAt: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000),
+      plan,
+      trialEndsAt: plan === "TRIAL" ? new Date(Date.now() + 14 * 24 * 60 * 60 * 1000) : null,
     },
   });
   // Create default account

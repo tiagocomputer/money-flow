@@ -1,11 +1,48 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
-export default function RegisterPage() {
+const planConfig = {
+  pro: {
+    label: "PRO",
+    badge: "💎 Plano PRO",
+    badgeBg: "#2563EB",
+    title: "Criar sua conta PRO",
+    subtitle: "R$ 97/mês — Acesso completo, contas e transações ilimitadas",
+    btnText: "Assinar PRO",
+    btnBg: "#2563EB",
+    apiPlan: "PRO",
+  },
+  trial: {
+    label: "TRIAL",
+    badge: "✨ 14 dias grátis",
+    badgeBg: "#0EA5E9",
+    title: "Começar trial gratuito",
+    subtitle: "14 dias com tudo ilimitado, sem cartão de crédito",
+    btnText: "Iniciar trial grátis",
+    btnBg: "#0EA5E9",
+    apiPlan: "TRIAL",
+  },
+  free: {
+    label: "FREE",
+    badge: null,
+    badgeBg: "",
+    title: "Criar conta grátis",
+    subtitle: "14 dias de trial com tudo ilimitado",
+    btnText: "Criar conta grátis",
+    btnBg: "#2563EB",
+    apiPlan: "FREE",
+  },
+};
+
+function RegisterForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const planKey = (searchParams.get("plan") ?? "free") as keyof typeof planConfig;
+  const config = planConfig[planKey] ?? planConfig.free;
+
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -17,7 +54,7 @@ export default function RegisterPage() {
     const res = await fetch("/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
+      body: JSON.stringify({ ...form, plan: config.apiPlan }),
     });
     const data = await res.json();
     setLoading(false);
@@ -38,11 +75,18 @@ export default function RegisterPage() {
               <span style={{ fontWeight: 800, fontSize: "1.5rem", color: "#2563EB" }}>MoneyFlow</span>
             </div>
           </Link>
-          <h1 style={{ fontSize: "1.5rem", fontWeight: 700, color: "#0F172A", marginBottom: "0.5rem" }}>Criar conta grátis</h1>
-          <p style={{ color: "#64748B", fontSize: "0.875rem" }}>14 dias de trial com tudo ilimitado</p>
+
+          {config.badge && (
+            <div style={{ display: "inline-block", background: config.badgeBg, color: "white", padding: "0.3rem 1rem", borderRadius: 100, fontSize: "0.8rem", fontWeight: 700, marginBottom: "1rem" }}>
+              {config.badge}
+            </div>
+          )}
+
+          <h1 style={{ fontSize: "1.5rem", fontWeight: 700, color: "#0F172A", marginBottom: "0.5rem" }}>{config.title}</h1>
+          <p style={{ color: "#64748B", fontSize: "0.875rem" }}>{config.subtitle}</p>
         </div>
 
-        <div style={{ background: "white", border: "1px solid #E2E8F0", borderRadius: 16, padding: "2rem" }}>
+        <div style={{ background: "white", border: planKey === "pro" ? "2px solid #2563EB" : "1px solid #E2E8F0", borderRadius: 16, padding: "2rem" }}>
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
             {error && (
               <div style={{ background: "#FEF2F2", border: "1px solid #FECACA", color: "#DC2626", padding: "0.75rem", borderRadius: 8, fontSize: "0.875rem" }}>
@@ -83,9 +127,9 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={loading}
-              style={{ background: "#2563EB", color: "white", padding: "0.75rem", borderRadius: 8, fontWeight: 700, border: "none", cursor: loading ? "not-allowed" : "pointer", opacity: loading ? 0.7 : 1, fontSize: "0.9rem" }}
+              style={{ background: config.btnBg, color: "white", padding: "0.75rem", borderRadius: 8, fontWeight: 700, border: "none", cursor: loading ? "not-allowed" : "pointer", opacity: loading ? 0.7 : 1, fontSize: "0.9rem" }}
             >
-              {loading ? "Criando conta..." : "Criar conta grátis"}
+              {loading ? "Criando conta..." : config.btnText}
             </button>
           </form>
 
@@ -102,5 +146,13 @@ export default function RegisterPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense>
+      <RegisterForm />
+    </Suspense>
   );
 }

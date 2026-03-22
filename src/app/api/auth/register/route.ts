@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, password } = await req.json();
+    const { name, email, password, plan } = await req.json();
     if (!name || !email || !password)
       return NextResponse.json({ error: "Campos obrigatórios" }, { status: 400 });
 
@@ -13,7 +13,9 @@ export async function POST(req: NextRequest) {
     if (existing)
       return NextResponse.json({ error: "Email já cadastrado" }, { status: 409 });
 
-    const user = await createUser(name, email, password);
+    const validPlans = ["FREE", "TRIAL", "PRO"];
+    const selectedPlan = validPlans.includes(plan?.toUpperCase()) ? plan.toUpperCase() : "TRIAL";
+    const user = await createUser(name, email, password, selectedPlan);
     const token = await createSession(user.id);
 
     const cookieStore = await cookies();
