@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PricingCards from "./components/PricingCards";
 
 const features = [
   {
@@ -38,42 +39,6 @@ const features = [
   },
 ];
 
-const plans = [
-  {
-    name: "FREE",
-    price: "R$ 0",
-    period: "/mês",
-    description: "Para começar",
-    features: ["1 conta bancária", "20 transações/mês", "Dashboard básico", "Categorias padrão"],
-    cta: "Começar grátis",
-    highlighted: false,
-  },
-  {
-    name: "TRIAL",
-    price: "14 dias",
-    period: "grátis",
-    description: "Experimente tudo",
-    features: ["Tudo ilimitado", "Dashboard completo", "Relatórios automáticos", "Suporte prioritário"],
-    cta: "Iniciar trial",
-    highlighted: false,
-  },
-  {
-    name: "PRO",
-    price: "R$ 97",
-    period: "/mês",
-    description: "Para quem é sério",
-    features: [
-      "Contas ilimitadas",
-      "Transações ilimitadas",
-      "KPIs avançados",
-      "Automações",
-      "Relatórios completos",
-      "Suporte prioritário",
-    ],
-    cta: "Assinar PRO",
-    highlighted: true,
-  },
-];
 
 export default function LandingPage() {
   return (
@@ -173,36 +138,7 @@ export default function LandingPage() {
             </h2>
             <p style={{ color: "#64748B", fontSize: "1.125rem" }}>Comece grátis e escale quando precisar</p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
-            {plans.map((plan) => (
-              <div key={plan.name} style={{ border: plan.highlighted ? "2px solid #2563EB" : "1px solid #E2E8F0", borderRadius: 16, padding: "2rem", position: "relative", background: plan.highlighted ? "#EFF6FF" : "white" }}>
-                {plan.highlighted && (
-                  <div style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "#2563EB", color: "white", padding: "0.25rem 0.875rem", borderRadius: 100, fontSize: "0.75rem", fontWeight: 700 }}>
-                    MAIS POPULAR
-                  </div>
-                )}
-                <div style={{ marginBottom: "1.5rem" }}>
-                  <div style={{ fontWeight: 700, fontSize: "1rem", color: "#64748B", marginBottom: "0.5rem" }}>{plan.name}</div>
-                  <div style={{ display: "flex", alignItems: "baseline", gap: "0.25rem" }}>
-                    <span style={{ fontSize: "2.5rem", fontWeight: 800, color: "#0F172A" }}>{plan.price}</span>
-                    <span style={{ color: "#64748B" }}>{plan.period}</span>
-                  </div>
-                  <div style={{ color: "#64748B", fontSize: "0.875rem" }}>{plan.description}</div>
-                </div>
-                <ul style={{ listStyle: "none", padding: 0, marginBottom: "1.5rem" }}>
-                  {plan.features.map((f) => (
-                    <li key={f} style={{ padding: "0.375rem 0", display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.9rem" }}>
-                      <span style={{ color: "#22C55E", fontWeight: 700 }}>✓</span>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/register" style={{ display: "block", textAlign: "center", padding: "0.75rem", borderRadius: 8, fontWeight: 700, textDecoration: "none", background: plan.highlighted ? "#2563EB" : "transparent", color: plan.highlighted ? "white" : "#2563EB", border: plan.highlighted ? "none" : "1px solid #2563EB" }}>
-                  {plan.cta}
-                </Link>
-              </div>
-            ))}
-          </div>
+          <PricingCards />
         </div>
       </section>
 
