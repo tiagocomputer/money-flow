@@ -1,5 +1,6 @@
 import Link from "next/link";
 import PricingCards from "./components/PricingCards";
+import HeroSection from "./components/HeroSection";
 
 const features = [
   {
@@ -60,32 +61,7 @@ export default function LandingPage() {
       </header>
 
       {/* Hero */}
-      <section style={{ background: "linear-gradient(135deg, #2563EB 0%, #0EA5E9 100%)", color: "white", padding: "6rem 2rem", textAlign: "center" }}>
-        <div style={{ maxWidth: 800, margin: "0 auto" }}>
-          <div style={{ display: "inline-block", background: "rgba(255,255,255,0.15)", borderRadius: 100, padding: "0.375rem 1rem", fontSize: "0.875rem", fontWeight: 600, marginBottom: "1.5rem" }}>
-            ✨ Gerenciamento de Finanças Inteligente
-          </div>
-          <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 800, lineHeight: 1.1, marginBottom: "1.5rem", letterSpacing: "-0.02em" }}>
-            QUER APRENDER A GERENCIAR SEU DINHEINHO DE FORMA INTELIGENTE?
-          </h1>
-          <p style={{ fontSize: "1.25rem", opacity: 0.9, marginBottom: "2.5rem", fontWeight: 500 }}>
-            TENHA CONTROLE SOBRE SEU DINHEINHO
-          </p>
-          <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/register" style={{ background: "white", color: "#2563EB", padding: "0.875rem 2rem", borderRadius: 8, fontWeight: 700, fontSize: "1rem", textDecoration: "none" }}>
-              Começar gratuitamente →
-            </Link>
-            <Link href="#features" style={{ background: "transparent", color: "white", padding: "0.875rem 2rem", borderRadius: 8, fontWeight: 600, fontSize: "1rem", textDecoration: "none", border: "2px solid rgba(255,255,255,0.5)" }}>
-              Ver funcionalidades
-            </Link>
-          </div>
-          <div style={{ marginTop: "3rem", display: "flex", justifyContent: "center", gap: "2rem", opacity: 0.85, fontSize: "0.875rem", flexWrap: "wrap" }}>
-            <span>✅ 14 dias grátis</span>
-            <span>✅ Sem cartão de crédito</span>
-            <span>✅ Cancele quando quiser</span>
-          </div>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* Stats */}
       <section style={{ background: "white", padding: "3rem 2rem", borderBottom: "1px solid #E2E8F0" }}>
