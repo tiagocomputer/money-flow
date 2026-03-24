@@ -38,11 +38,26 @@ export default function Header() {
           alignItems: "center",
           justifyContent: "space-between",
         }}>
-          {/* Logo */}
-          <Link href="/" style={{ display: "flex", alignItems: "center", gap: "0.5rem", textDecoration: "none" }}>
-            <span style={{ fontSize: "1.5rem" }}>💰</span>
-            <span style={{ fontWeight: 700, fontSize: "1.125rem", color: "#2563EB" }}>MoneyFlow</span>
-          </Link>
+          {/* Left side: hamburger (mobile) + logo */}
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+            {/* Hamburger button — mobile only, top-left */}
+            <button
+              className="hdr-hamburger"
+              onClick={() => setOpen(true)}
+              aria-label="Abrir menu"
+              aria-expanded={open}
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+
+            {/* Logo */}
+            <Link href="/" style={{ display: "flex", alignItems: "center", gap: "0.5rem", textDecoration: "none" }}>
+              <span style={{ fontSize: "1.5rem" }}>💰</span>
+              <span style={{ fontWeight: 700, fontSize: "1.125rem", color: "#2563EB" }}>MoneyFlow</span>
+            </Link>
+          </div>
 
           {/* Desktop nav */}
           <nav className="hdr-desktop-nav">
@@ -51,18 +66,6 @@ export default function Header() {
             <Link href="/login" style={btnOutlineStyle}>Entrar</Link>
             <Link href="/register" style={btnSolidStyle}>Começar grátis</Link>
           </nav>
-
-          {/* Hamburger button — mobile only */}
-          <button
-            className="hdr-hamburger"
-            onClick={() => setOpen(true)}
-            aria-label="Abrir menu"
-            aria-expanded={open}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
         </div>
       </header>
 
@@ -151,13 +154,13 @@ export default function Header() {
         .hdr-drawer {
           position: fixed;
           top: 0;
-          right: 0;
+          left: 0;
           bottom: 0;
           width: min(320px, 85vw);
           background: white;
-          box-shadow: -4px 0 24px rgba(0,0,0,0.1);
+          box-shadow: 4px 0 24px rgba(0,0,0,0.1);
           z-index: 70;
-          transform: translateX(100%);
+          transform: translateX(-100%);
           transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
           display: flex;
           flex-direction: column;
