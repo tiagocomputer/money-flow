@@ -83,23 +83,18 @@ const testimonials: Testimonial[] = [
 
 function TestimonialCard({ t }: { t: Testimonial }) {
   return (
-    <div className="testimonial-card">
-      <p className="testimonial-text">&ldquo;{t.text}&rdquo;</p>
-      <div className="testimonial-author">
-        <div
-          className="testimonial-avatar"
-          style={{ background: t.author.color }}
-        >
+    <div className="t-card">
+      <p className="t-text">&ldquo;{t.text}&rdquo;</p>
+      <div className="t-author">
+        <div className="t-avatar" style={{ background: t.author.color }}>
           {t.author.initials}
         </div>
-        <div className="testimonial-info">
-          <div className="testimonial-name">
+        <div className="t-info">
+          <div className="t-name">
             <span>{t.author.name}</span>
-            {t.author.verified && <BadgeCheck size={13} className="testimonial-badge" />}
+            {t.author.verified && <BadgeCheck size={13} className="t-badge" />}
           </div>
-          <div className="testimonial-role">
-            {t.author.role} · {t.author.company}
-          </div>
+          <div className="t-role">{t.author.role} · {t.author.company}</div>
         </div>
       </div>
     </div>
@@ -107,11 +102,10 @@ function TestimonialCard({ t }: { t: Testimonial }) {
 }
 
 function MarqueeColumn({ items, reverse }: { items: Testimonial[]; reverse?: boolean }) {
-  // Duplicate cards so the loop is seamless
   const doubled = [...items, ...items];
   return (
-    <div className="marquee-column-wrapper">
-      <div className={`marquee-column${reverse ? " marquee-reverse" : ""}`}>
+    <div className="t-col-wrapper">
+      <div className={`t-col${reverse ? " t-col-rev" : ""}`}>
         {doubled.map((t, i) => (
           <TestimonialCard key={i} t={t} />
         ))}
@@ -120,7 +114,6 @@ function MarqueeColumn({ items, reverse }: { items: Testimonial[]; reverse?: boo
   );
 }
 
-// Split testimonials into 4 columns
 function splitIntoColumns(items: Testimonial[], cols: number): Testimonial[][] {
   const columns: Testimonial[][] = Array.from({ length: cols }, () => []);
   items.forEach((item, i) => columns[i % cols].push(item));
@@ -131,42 +124,43 @@ export default function Testimonials() {
   const columns = splitIntoColumns(testimonials, 4);
 
   return (
-    <section className="testimonials-section">
+    <section className="t-section">
       {/* Header */}
-      <div className="testimonials-header">
-        <div className="testimonials-badge">Depoimentos</div>
-        <h2 className="testimonials-title">O que nossos clientes dizem</h2>
-        <p className="testimonials-subtitle">
+      <div className="t-header">
+        <div className="t-badge-pill">Depoimentos</div>
+        <h2 className="t-title">O que nossos clientes dizem</h2>
+        <p className="t-subtitle">
           Mais de 10.000 profissionais e empresas confiam no MoneyFlow para controlar suas finanças.
         </p>
       </div>
 
-      {/* Perspective container */}
-      <div className="marquee-perspective">
-        <div className="marquee-grid">
+      {/* Marquee — matches: relative flex h-[500px] w-full flex-row items-center justify-center overflow-hidden gap-1.5 [perspective:300px] */}
+      <div className="t-marquee-outer">
+        <div className="t-marquee-inner">
           {columns.map((col, i) => (
             <MarqueeColumn key={i} items={col} reverse={i % 2 === 1} />
           ))}
         </div>
-        {/* Top & bottom fades */}
-        <div className="marquee-fade-top" />
-        <div className="marquee-fade-bottom" />
+        <div className="t-fade-left" />
+        <div className="t-fade-right" />
+        <div className="t-fade-top" />
+        <div className="t-fade-bottom" />
       </div>
 
       <style>{`
-        .testimonials-section {
-          padding: 5rem 2rem;
-          background: #F8FAFC;
-          border-top: 1px solid #E2E8F0;
+        /* ── Section ── */
+        .t-section {
+          padding: 6rem 2rem;
+          background: white;
           overflow: hidden;
         }
 
-        .testimonials-header {
+        .t-header {
           text-align: center;
           margin-bottom: 3rem;
         }
 
-        .testimonials-badge {
+        .t-badge-pill {
           display: inline-block;
           background: #EFF6FF;
           color: #2563EB;
@@ -179,7 +173,7 @@ export default function Testimonials() {
           text-transform: uppercase;
         }
 
-        .testimonials-title {
+        .t-title {
           font-size: 2rem;
           font-weight: 800;
           color: #0F172A;
@@ -187,105 +181,125 @@ export default function Testimonials() {
           line-height: 1.25;
         }
 
-        .testimonials-subtitle {
+        .t-subtitle {
           color: #64748B;
           font-size: 1rem;
           max-width: 480px;
           margin: 0 auto;
         }
 
-        /* Perspective wrapper */
-        .marquee-perspective {
+        /* ── Marquee outer: matches the selector exactly ── */
+        .t-marquee-outer {
           position: relative;
-          height: 520px;
+          display: flex;
+          height: 500px;
+          width: 100%;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
           overflow: hidden;
         }
 
-        .marquee-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 0.75rem;
+        /* ── Inner container with perspective:300px ── */
+        .t-marquee-inner {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          gap: 6px; /* gap-1.5 = 6px */
           height: 100%;
-          transform: perspective(900px) rotateX(16deg) scale(1.05);
-          transform-origin: center top;
+          width: 100%;
+          perspective: 300px;
         }
 
-        /* Each column is a clipping window */
-        .marquee-column-wrapper {
+        /* ── Each column ── */
+        .t-col-wrapper {
+          flex: 1;
           overflow: hidden;
           height: 100%;
+          max-width: 280px;
         }
 
-        /* The scrolling strip */
-        .marquee-column {
+        .t-col {
           display: flex;
           flex-direction: column;
-          gap: 0.75rem;
-          animation: marquee-up 28s linear infinite;
+          gap: 6px;
+          animation: t-up 30s linear infinite;
         }
 
-        .marquee-column.marquee-reverse {
-          animation: marquee-down 28s linear infinite;
+        .t-col-rev {
+          animation: t-down 30s linear infinite;
         }
 
-        @keyframes marquee-up {
-          0%   { transform: translateY(0); }
-          100% { transform: translateY(-50%); }
+        @keyframes t-up {
+          from { transform: translateY(0); }
+          to   { transform: translateY(-50%); }
         }
 
-        @keyframes marquee-down {
-          0%   { transform: translateY(-50%); }
-          100% { transform: translateY(0); }
+        @keyframes t-down {
+          from { transform: translateY(-50%); }
+          to   { transform: translateY(0); }
         }
 
-        /* Pause on hover */
-        .marquee-column-wrapper:hover .marquee-column {
+        .t-col-wrapper:hover .t-col {
           animation-play-state: paused;
         }
 
-        /* Fades */
-        .marquee-fade-top,
-        .marquee-fade-bottom {
+        /* ── Fades ── */
+        .t-fade-left,
+        .t-fade-right,
+        .t-fade-top,
+        .t-fade-bottom {
           position: absolute;
-          left: 0;
-          right: 0;
-          height: 100px;
           pointer-events: none;
           z-index: 2;
         }
-        .marquee-fade-top {
-          top: 0;
-          background: linear-gradient(to bottom, #F8FAFC 10%, transparent);
-        }
-        .marquee-fade-bottom {
-          bottom: 0;
-          background: linear-gradient(to top, #F8FAFC 10%, transparent);
+
+        .t-fade-left {
+          left: 0; top: 0; bottom: 0; width: 80px;
+          background: linear-gradient(to right, white 20%, transparent);
         }
 
-        /* Card */
-        .testimonial-card {
+        .t-fade-right {
+          right: 0; top: 0; bottom: 0; width: 80px;
+          background: linear-gradient(to left, white 20%, transparent);
+        }
+
+        .t-fade-top {
+          top: 0; left: 0; right: 0; height: 120px;
+          background: linear-gradient(to bottom, white 10%, transparent);
+        }
+
+        .t-fade-bottom {
+          bottom: 0; left: 0; right: 0; height: 120px;
+          background: linear-gradient(to top, white 10%, transparent);
+        }
+
+        /* ── Card ── */
+        .t-card {
           background: white;
           border: 1px solid #E2E8F0;
           border-radius: 14px;
           padding: 1.125rem;
           flex-shrink: 0;
           box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+          width: 100%;
         }
 
-        .testimonial-text {
+        .t-text {
           color: #334155;
           font-size: 0.85rem;
           line-height: 1.65;
           margin-bottom: 0.875rem;
         }
 
-        .testimonial-author {
+        .t-author {
           display: flex;
           align-items: center;
           gap: 0.625rem;
         }
 
-        .testimonial-avatar {
+        .t-avatar {
           width: 34px;
           height: 34px;
           border-radius: 50%;
@@ -299,48 +313,37 @@ export default function Testimonials() {
           border: 2px solid #F1F5F9;
         }
 
-        .testimonial-info {
-          min-width: 0;
-        }
+        .t-info { min-width: 0; }
 
-        .testimonial-name {
+        .t-name {
           display: flex;
           align-items: center;
           gap: 0.25rem;
           font-weight: 700;
           font-size: 0.78rem;
           color: #0F172A;
-          white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          white-space: nowrap;
         }
 
-        .testimonial-badge {
-          color: #2563EB;
-          flex-shrink: 0;
-        }
+        .t-badge { color: #2563EB; flex-shrink: 0; }
 
-        .testimonial-role {
+        .t-role {
           font-size: 0.68rem;
           color: #94A3B8;
-          white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          white-space: nowrap;
         }
 
-        /* Mobile: show only 2 columns, no perspective */
+        /* ── Mobile ── */
         @media (max-width: 768px) {
-          .marquee-perspective {
-            height: 420px;
-          }
-          .marquee-grid {
-            grid-template-columns: repeat(2, 1fr);
-            transform: perspective(700px) rotateX(12deg) scale(1.04);
-          }
-          .marquee-column-wrapper:nth-child(3),
-          .marquee-column-wrapper:nth-child(4) {
-            display: none;
-          }
+          .t-section { padding: 4rem 1rem; }
+          .t-marquee-outer { height: 420px; }
+          .t-col-wrapper:nth-child(3),
+          .t-col-wrapper:nth-child(4) { display: none; }
+          .t-col-wrapper { max-width: 50%; }
         }
       `}</style>
     </section>
