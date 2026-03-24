@@ -124,41 +124,54 @@ export default function Testimonials() {
   const columns = chunk(testimonials, 4);
 
   return (
+    /* Same outer padding as every other section on the page */
     <section className="t-section">
-      <div className="t-header">
-        <div className="t-pill">Depoimentos</div>
-        <h2 className="t-title">O que nossos clientes dizem</h2>
-        <p className="t-sub">
-          Mais de 10.000 profissionais e empresas confiam no MoneyFlow para controlar suas finanças.
-        </p>
-      </div>
+      {/* Same 1200px container used by Features, Stats, etc. */}
+      <div className="t-container">
 
-      <div className="t-stage">
-        {/* The grid that gets the 3D tilt */}
-        <div className="t-grid">
-          {columns.map((col, i) => (
-            <MarqueeColumn key={i} items={col} reverse={i % 2 === 1} />
-          ))}
+        {/* Header — identical typographic scale to Features section */}
+        <div className="t-header">
+          <div className="t-pill">Depoimentos</div>
+          <h2 className="t-title">O que nossos clientes dizem</h2>
+          <p className="t-sub">
+            Mais de 10.000 profissionais e empresas confiam no MoneyFlow para controlar suas finanças.
+          </p>
         </div>
 
-        {/* Fades */}
-        <div className="t-fade t-fade-top" />
-        <div className="t-fade t-fade-bottom" />
-        <div className="t-fade t-fade-left" />
-        <div className="t-fade t-fade-right" />
+        {/* Stage lives inside the container — never exceeds 1200px */}
+        <div className="t-stage">
+          <div className="t-grid">
+            {columns.map((col, i) => (
+              <MarqueeColumn key={i} items={col} reverse={i % 2 === 1} />
+            ))}
+          </div>
+
+          <div className="t-fade t-fade-top" />
+          <div className="t-fade t-fade-bottom" />
+          <div className="t-fade t-fade-left" />
+          <div className="t-fade t-fade-right" />
+        </div>
+
       </div>
 
       <style>{`
+        /* ── Section: matches all other landing sections ── */
         .t-section {
-          padding: 5rem 0;
+          padding: 5rem 2rem;
           background: white;
           overflow: hidden;
         }
 
+        /* ── Container: same 1200px grid as Features / Pricing ── */
+        .t-container {
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        /* ── Header ── */
         .t-header {
           text-align: center;
-          padding: 0 2rem;
-          margin-bottom: 3.5rem;
+          margin-bottom: 3rem;
         }
 
         .t-pill {
@@ -174,40 +187,40 @@ export default function Testimonials() {
           text-transform: uppercase;
         }
 
+        /* Matches Features h2: 2.25rem / 800 */
         .t-title {
-          font-size: 2.1rem;
+          font-size: 2.25rem;
           font-weight: 800;
           color: #0F172A;
-          margin-bottom: 0.75rem;
+          margin-bottom: 1rem;
           line-height: 1.2;
         }
 
+        /* Matches Features subtitle: 1.125rem, max-w 600 */
         .t-sub {
           color: #64748B;
-          font-size: 1rem;
-          max-width: 460px;
+          font-size: 1.125rem;
+          max-width: 600px;
           margin: 0 auto;
         }
 
-        /* ── Stage: perspective lives here ── */
+        /* ── Stage: perspective container, bounded by the 1200px grid ── */
         .t-stage {
           position: relative;
-          height: 520px;
+          height: 500px;
           overflow: hidden;
-          /* perspective on the parent */
-          perspective: 600px;
-          perspective-origin: 50% 40%;
+          border-radius: 16px;
+          perspective: 700px;
+          perspective-origin: 50% 38%;
         }
 
-        /* ── Grid: tilted in 3D ── */
+        /* ── Grid: 3D tilt — no extra padding needed (container handles it) ── */
         .t-grid {
           display: flex;
           flex-direction: row;
-          gap: 10px;
+          gap: 12px;
           height: 100%;
-          padding: 0 1rem;
-          /* tilt like the reference image — rotateX lays it down, rotateZ adds diagonal */
-          transform: rotateX(20deg) rotateZ(-4deg) scale(1.06);
+          transform: rotateX(20deg) rotateZ(-4deg) scale(1.08);
           transform-origin: center center;
           transform-style: preserve-3d;
         }
@@ -224,7 +237,7 @@ export default function Testimonials() {
         .t-col {
           display: flex;
           flex-direction: column;
-          gap: 10px;
+          gap: 12px;
           animation: t-up 32s linear infinite;
         }
 
@@ -246,13 +259,13 @@ export default function Testimonials() {
           animation-play-state: paused;
         }
 
-        /* ── Card ── */
+        /* ── Card — same border/radius/shadow tokens as Features cards ── */
         .t-card {
           background: #fff;
-          border: 1px solid #E8EDF2;
+          border: 1px solid #E2E8F0;
           border-radius: 16px;
-          padding: 1.125rem 1.125rem 1rem;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+          padding: 1.25rem;
+          box-shadow: 0 1px 4px rgba(0,0,0,0.06);
           flex-shrink: 0;
           width: 100%;
         }
@@ -265,8 +278,8 @@ export default function Testimonials() {
         }
 
         .t-avatar {
-          width: 48px;
-          height: 48px;
+          width: 44px;
+          height: 44px;
           border-radius: 50%;
           object-fit: cover;
           flex-shrink: 0;
@@ -280,7 +293,7 @@ export default function Testimonials() {
 
         .t-name {
           font-weight: 700;
-          font-size: 0.9rem;
+          font-size: 0.875rem;
           color: #0F172A;
           line-height: 1.25;
         }
@@ -305,13 +318,13 @@ export default function Testimonials() {
         }
 
         .t-text {
-          font-size: 0.88rem;
+          font-size: 0.875rem;
           line-height: 1.65;
           color: #374151;
           margin: 0;
         }
 
-        /* ── Fades ── */
+        /* ── Fades — reference the stage bounds, not the viewport ── */
         .t-fade {
           position: absolute;
           pointer-events: none;
@@ -319,29 +332,31 @@ export default function Testimonials() {
         }
 
         .t-fade-top {
-          top: 0; left: 0; right: 0; height: 140px;
-          background: linear-gradient(to bottom, white 15%, transparent);
+          top: 0; left: 0; right: 0; height: 120px;
+          background: linear-gradient(to bottom, white 10%, transparent);
         }
 
         .t-fade-bottom {
-          bottom: 0; left: 0; right: 0; height: 140px;
-          background: linear-gradient(to top, white 15%, transparent);
+          bottom: 0; left: 0; right: 0; height: 120px;
+          background: linear-gradient(to top, white 10%, transparent);
         }
 
         .t-fade-left {
-          left: 0; top: 0; bottom: 0; width: 100px;
-          background: linear-gradient(to right, white 20%, transparent);
+          left: 0; top: 0; bottom: 0; width: 80px;
+          background: linear-gradient(to right, white 15%, transparent);
         }
 
         .t-fade-right {
-          right: 0; top: 0; bottom: 0; width: 100px;
-          background: linear-gradient(to left, white 20%, transparent);
+          right: 0; top: 0; bottom: 0; width: 80px;
+          background: linear-gradient(to left, white 15%, transparent);
         }
 
         /* ── Mobile ── */
         @media (max-width: 768px) {
-          .t-stage { height: 420px; perspective: 400px; }
-          .t-grid { transform: rotateX(18deg) rotateZ(-3deg) scale(1.04); gap: 8px; }
+          .t-section { padding: 4rem 1.25rem; }
+          .t-title { font-size: 1.75rem; }
+          .t-stage { height: 400px; perspective: 450px; }
+          .t-grid { transform: rotateX(18deg) rotateZ(-3deg) scale(1.05); gap: 8px; }
           .t-col-wrap:nth-child(3),
           .t-col-wrap:nth-child(4) { display: none; }
         }
