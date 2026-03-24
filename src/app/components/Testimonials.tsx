@@ -1,102 +1,104 @@
 "use client";
 
-import { BadgeCheck } from "lucide-react";
-
 interface Testimonial {
   text: string;
   author: {
     name: string;
-    role: string;
-    company: string;
-    initials: string;
-    color: string;
-    verified?: boolean;
+    handle: string;
+    avatar: string; // pravatar img id
+    flag: string;
+    city: string;
   };
 }
 
 const testimonials: Testimonial[] = [
   {
-    text: "O MoneyFlow transformou como gerencio as finanças do meu negócio. Antes perdia horas em planilhas, agora tenho tudo em tempo real.",
-    author: { name: "Ana Paula Ferreira", role: "Empreendedora", company: "Studio AP", initials: "AP", color: "#2563EB", verified: true },
+    text: "O MoneyFlow transformou como gerencio as finanças. Antes perdia horas em planilhas, agora tenho tudo em tempo real e consigo tomar decisões muito mais rápido.",
+    author: { name: "Ana Paula Ferreira", handle: "@anapaula", avatar: "1", flag: "🇧🇷", city: "São Paulo" },
   },
   {
     text: "Finalmente consegui separar minhas finanças pessoais das profissionais. Os relatórios são incríveis e me ajudam a planejar os próximos meses.",
-    author: { name: "Carlos Eduardo Lima", role: "Dev Freelancer", company: "Autônomo", initials: "CE", color: "#0EA5E9", verified: true },
+    author: { name: "Carlos Eduardo Lima", handle: "@carlosedu", avatar: "11", flag: "🇧🇷", city: "Curitiba" },
   },
   {
-    text: "Implementamos o MoneyFlow em toda a empresa. A visibilidade dos fluxos de caixa melhorou muito a nossa tomada de decisão estratégica.",
-    author: { name: "Mariana Costa", role: "Diretora Financeira", company: "TechStart BR", initials: "MC", color: "#6366F1", verified: true },
+    text: "Implementamos em toda a empresa. A visibilidade dos fluxos de caixa melhorou muito a nossa tomada de decisão estratégica. Recomendo para qualquer gestor.",
+    author: { name: "Mariana Costa", handle: "@marianac", avatar: "5", flag: "🇧🇷", city: "Florianópolis" },
   },
   {
-    text: "Interface linda e super intuitiva. Em menos de 10 minutos já estava usando de verdade. Recomendo para qualquer profissional.",
-    author: { name: "Rafael Souza", role: "Designer UI/UX", company: "Agência Pixel", initials: "RS", color: "#EC4899", verified: false },
+    text: "Interface linda e super intuitiva. Em menos de 10 minutos já estava usando de verdade. Recomendo para qualquer profissional criativo.",
+    author: { name: "Rafael Souza", handle: "@rafaels", avatar: "12", flag: "🇧🇷", city: "Rio de Janeiro" },
   },
   {
-    text: "Minha clínica cresceu muito com o controle financeiro que o MoneyFlow oferece. Tenho clareza sobre cada centavo que entra e sai.",
-    author: { name: "Juliana Mendes", role: "Médica", company: "Clínica JM", initials: "JM", color: "#22C55E", verified: true },
+    text: "Minha clínica cresceu muito com o controle financeiro que o MoneyFlow oferece. Tenho clareza sobre cada centavo que entra e sai. Ferramenta essencial.",
+    author: { name: "Juliana Mendes", handle: "@julianam", avatar: "9", flag: "🇧🇷", city: "Belo Horizonte" },
   },
   {
-    text: "Nunca pensei que um software de finanças pudesse ser tão fácil de usar. Minha equipe adorou e os resultados foram imediatos.",
-    author: { name: "Pedro Alves", role: "CEO", company: "Construções PA", initials: "PA", color: "#F59E0B", verified: false },
+    text: "Nunca pensei que um software de finanças pudesse ser tão fácil de usar. Minha equipe adorou, e os resultados foram imediatos. O suporte também é excelente.",
+    author: { name: "Pedro Alves", handle: "@pedroalves", avatar: "15", flag: "🇧🇷", city: "Brasília" },
   },
   {
-    text: "Os alertas de orçamento são fantásticos. Evitei várias surpresas desagradáveis graças aos avisos automáticos do sistema.",
-    author: { name: "Fernanda Rocha", role: "Consultora", company: "FR Soluções", initials: "FR", color: "#8B5CF6", verified: true },
+    text: "Os alertas de orçamento são fantásticos. Evitei várias surpresas desagradáveis graças aos avisos automáticos. Vale muito cada centavo da assinatura.",
+    author: { name: "Fernanda Rocha", handle: "@fernr", avatar: "10", flag: "🇧🇷", city: "Porto Alegre" },
   },
   {
-    text: "A função de metas financeiras me motivou a poupar de verdade. Já atingi dois objetivos que estavam parados há anos.",
-    author: { name: "Bruno Oliveira", role: "Arquiteto", company: "Studio BO", initials: "BO", color: "#0F172A", verified: false },
+    text: "A função de metas financeiras me motivou a poupar de verdade. Já atingi dois objetivos que estavam parados há anos nas minhas resoluções.",
+    author: { name: "Bruno Oliveira", handle: "@brunoo", avatar: "17", flag: "🇧🇷", city: "Salvador" },
   },
   {
-    text: "Simples, bonito e eficiente. Uso tanto no celular quanto no computador e a experiência é sempre excelente.",
-    author: { name: "Larissa Nunes", role: "Professora", company: "Escola Saber", initials: "LN", color: "#EF4444", verified: true },
+    text: "Simples, bonito e eficiente. Uso tanto no celular quanto no computador e a experiência é sempre excelente. Um dos melhores investimentos que fiz.",
+    author: { name: "Larissa Nunes", handle: "@larissan", avatar: "20", flag: "🇧🇷", city: "Fortaleza" },
   },
   {
-    text: "Gerencio os projetos dos clientes e as finanças pessoais no mesmo lugar. Dashboard claro sem precisar de planilhas.",
-    author: { name: "Diego Carvalho", role: "Engenheiro Civil", company: "DC Projetos", initials: "DC", color: "#059669", verified: false },
+    text: "Gerencio os projetos dos clientes e as finanças pessoais no mesmo lugar. O dashboard me dá uma visão clara do meu fluxo de caixa mensal.",
+    author: { name: "Diego Carvalho", handle: "@diegoc", avatar: "22", flag: "🇧🇷", city: "Recife" },
   },
   {
-    text: "Depois de testar vários apps financeiros, o MoneyFlow foi o único que realmente ficou no meu dia a dia. Curva de aprendizado zero.",
-    author: { name: "Isabela Martins", role: "Advogada", company: "Martins & Assoc.", initials: "IM", color: "#D97706", verified: true },
+    text: "Depois de testar vários apps financeiros, o MoneyFlow foi o único que realmente ficou no meu dia a dia. A curva de aprendizado é zero.",
+    author: { name: "Isabela Santos", handle: "@isa", avatar: "25", flag: "🇧🇷", city: "Brasília" },
   },
   {
-    text: "Em 3 meses já identificamos onde estávamos perdendo dinheiro. O ROI foi imediato. Ferramenta imprescindível para PMEs.",
-    author: { name: "Roberto Santos", role: "Comerciante", company: "Loja RS", initials: "RS", color: "#7C3AED", verified: false },
+    text: "Começamos a usar para controle da loja e em 3 meses já identificamos onde estávamos perdendo dinheiro. O ROI foi imediato.",
+    author: { name: "Marcelo Figueiredo", handle: "@marcelo", avatar: "27", flag: "🇧🇷", city: "Manaus" },
   },
   {
-    text: "Controlo todas as entradas e saídas da minha equipe de vendas em tempo real. Os relatórios mensais me poupam horas de trabalho.",
-    author: { name: "Tatiane Borges", role: "Gerente Comercial", company: "Borges Vendas", initials: "TB", color: "#0284C7", verified: true },
+    text: "Controlo todas as entradas e saídas da minha equipe de vendas em tempo real. Os relatórios mensais me poupam horas de trabalho toda semana.",
+    author: { name: "Tatiane Borges", handle: "@tatib", avatar: "32", flag: "🇧🇷", city: "Goiânia" },
   },
   {
-    text: "A integração bancária automática foi um divisor de águas. Não preciso mais lançar nada manualmente.",
-    author: { name: "Marcelo Figueiredo", role: "Contador", company: "MF Contabilidade", initials: "MF", color: "#DC2626", verified: true },
+    text: "A integração bancária automática foi um divisor de águas. Não preciso mais lançar nada manualmente. Poupa pelo menos 2 horas por semana.",
+    author: { name: "Lucas Ferreira", handle: "@lucas", avatar: "33", flag: "🇧🇷", city: "São Paulo" },
   },
   {
-    text: "Recomendo para todos os meus clientes que precisam de clareza financeira. O suporte é ágil e atencioso.",
-    author: { name: "Camila Torres", role: "Coach Financeira", company: "Autônoma", initials: "CT", color: "#7E22CE", verified: false },
+    text: "Recomendo para todos os meus clientes que precisam de clareza financeira. A plataforma é robusta e o suporte é ágil e atencioso.",
+    author: { name: "Camila Torres", handle: "@camit", avatar: "39", flag: "🇧🇷", city: "Campo Grande" },
   },
   {
-    text: "Finalmente consigo ver o meu lucro real separado do faturamento. Isso mudou completamente minha gestão.",
-    author: { name: "Lucas Pereira", role: "Dentista", company: "Clínica LP", initials: "LP", color: "#16A34A", verified: true },
+    text: "Finalmente consigo ver o meu lucro real separado do faturamento. Isso mudou completamente minha gestão e minha tranquilidade financeira.",
+    author: { name: "Mariana Silva", handle: "@mari", avatar: "44", flag: "🇧🇷", city: "São Paulo" },
   },
 ];
 
 function TestimonialCard({ t }: { t: Testimonial }) {
   return (
     <div className="t-card">
-      <p className="t-text">&ldquo;{t.text}&rdquo;</p>
-      <div className="t-author">
-        <div className="t-avatar" style={{ background: t.author.color }}>
-          {t.author.initials}
-        </div>
-        <div className="t-info">
-          <div className="t-name">
-            <span>{t.author.name}</span>
-            {t.author.verified && <BadgeCheck size={13} className="t-badge" />}
+      <div className="t-card-header">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`https://i.pravatar.cc/80?img=${t.author.avatar}`}
+          alt={t.author.name}
+          className="t-avatar"
+          loading="lazy"
+        />
+        <div className="t-author-info">
+          <div className="t-name">{t.author.name}</div>
+          <div className="t-handle">{t.author.handle}</div>
+          <div className="t-location">
+            <span>{t.author.flag}</span>
+            <span className="t-city">{t.author.city}</span>
           </div>
-          <div className="t-role">{t.author.role} · {t.author.company}</div>
         </div>
       </div>
+      <p className="t-text">{t.text}</p>
     </div>
   );
 }
@@ -104,134 +106,130 @@ function TestimonialCard({ t }: { t: Testimonial }) {
 function MarqueeColumn({ items, reverse }: { items: Testimonial[]; reverse?: boolean }) {
   const doubled = [...items, ...items];
   return (
-    <div className="t-col-wrapper">
-      <div className={`t-col${reverse ? " t-col-rev" : ""}`}>
-        {doubled.map((t, i) => (
-          <TestimonialCard key={i} t={t} />
-        ))}
+    <div className="t-col-wrap">
+      <div className={`t-col${reverse ? " t-rev" : ""}`}>
+        {doubled.map((t, i) => <TestimonialCard key={i} t={t} />)}
       </div>
     </div>
   );
 }
 
-function splitIntoColumns(items: Testimonial[], cols: number): Testimonial[][] {
-  const columns: Testimonial[][] = Array.from({ length: cols }, () => []);
-  items.forEach((item, i) => columns[i % cols].push(item));
-  return columns;
+function chunk(arr: Testimonial[], cols: number): Testimonial[][] {
+  const out: Testimonial[][] = Array.from({ length: cols }, () => []);
+  arr.forEach((item, i) => out[i % cols].push(item));
+  return out;
 }
 
 export default function Testimonials() {
-  const columns = splitIntoColumns(testimonials, 4);
+  const columns = chunk(testimonials, 4);
 
   return (
     <section className="t-section">
-      {/* Header */}
       <div className="t-header">
-        <div className="t-badge-pill">Depoimentos</div>
+        <div className="t-pill">Depoimentos</div>
         <h2 className="t-title">O que nossos clientes dizem</h2>
-        <p className="t-subtitle">
+        <p className="t-sub">
           Mais de 10.000 profissionais e empresas confiam no MoneyFlow para controlar suas finanças.
         </p>
       </div>
 
-      {/* Marquee — matches: relative flex h-[500px] w-full flex-row items-center justify-center overflow-hidden gap-1.5 [perspective:300px] */}
-      <div className="t-marquee-outer">
-        <div className="t-marquee-inner">
+      <div className="t-stage">
+        {/* The grid that gets the 3D tilt */}
+        <div className="t-grid">
           {columns.map((col, i) => (
             <MarqueeColumn key={i} items={col} reverse={i % 2 === 1} />
           ))}
         </div>
-        <div className="t-fade-left" />
-        <div className="t-fade-right" />
-        <div className="t-fade-top" />
-        <div className="t-fade-bottom" />
+
+        {/* Fades */}
+        <div className="t-fade t-fade-top" />
+        <div className="t-fade t-fade-bottom" />
+        <div className="t-fade t-fade-left" />
+        <div className="t-fade t-fade-right" />
       </div>
 
       <style>{`
-        /* ── Section ── */
         .t-section {
-          padding: 6rem 2rem;
+          padding: 5rem 0;
           background: white;
           overflow: hidden;
         }
 
         .t-header {
           text-align: center;
-          margin-bottom: 3rem;
+          padding: 0 2rem;
+          margin-bottom: 3.5rem;
         }
 
-        .t-badge-pill {
+        .t-pill {
           display: inline-block;
           background: #EFF6FF;
           color: #2563EB;
-          font-size: 0.75rem;
+          font-size: 0.72rem;
           font-weight: 700;
-          padding: 0.3rem 0.875rem;
+          padding: 0.3rem 0.9rem;
           border-radius: 100px;
-          margin-bottom: 0.875rem;
-          letter-spacing: 0.06em;
+          margin-bottom: 1rem;
+          letter-spacing: 0.07em;
           text-transform: uppercase;
         }
 
         .t-title {
-          font-size: 2rem;
+          font-size: 2.1rem;
           font-weight: 800;
           color: #0F172A;
           margin-bottom: 0.75rem;
-          line-height: 1.25;
+          line-height: 1.2;
         }
 
-        .t-subtitle {
+        .t-sub {
           color: #64748B;
           font-size: 1rem;
-          max-width: 480px;
+          max-width: 460px;
           margin: 0 auto;
         }
 
-        /* ── Marquee outer: perspective lives here ── */
-        .t-marquee-outer {
+        /* ── Stage: perspective lives here ── */
+        .t-stage {
           position: relative;
-          display: flex;
-          height: 500px;
-          width: 100%;
-          flex-direction: row;
-          align-items: center;
-          justify-content: center;
+          height: 520px;
           overflow: hidden;
-          perspective: 300px;
+          /* perspective on the parent */
+          perspective: 600px;
+          perspective-origin: 50% 40%;
         }
 
-        /* ── Inner grid: rotateX creates the "lying down" tilt ── */
-        .t-marquee-inner {
+        /* ── Grid: tilted in 3D ── */
+        .t-grid {
           display: flex;
           flex-direction: row;
-          align-items: flex-start;
-          justify-content: center;
-          gap: 6px;
+          gap: 10px;
           height: 100%;
-          width: 100%;
-          transform: rotateX(25deg);
+          padding: 0 1rem;
+          /* tilt like the reference image — rotateX lays it down, rotateZ adds diagonal */
+          transform: rotateX(20deg) rotateZ(-4deg) scale(1.06);
           transform-origin: center center;
           transform-style: preserve-3d;
         }
 
-        /* ── Each column ── */
-        .t-col-wrapper {
+        /* ── Column wrapper ── */
+        .t-col-wrap {
           flex: 1;
           overflow: hidden;
           height: 100%;
-          max-width: 280px;
+          min-width: 0;
         }
 
+        /* ── Scrolling strip ── */
         .t-col {
           display: flex;
           flex-direction: column;
-          gap: 6px;
-          animation: t-up 30s linear infinite;
+          gap: 10px;
+          animation: t-up 32s linear infinite;
         }
 
-        .t-col-rev {
-          animation: t-down 30s linear infinite;
+        .t-rev {
+          animation: t-down 32s linear infinite;
         }
 
         @keyframes t-up {
@@ -244,109 +242,108 @@ export default function Testimonials() {
           to   { transform: translateY(0); }
         }
 
-        .t-col-wrapper:hover .t-col {
+        .t-col-wrap:hover .t-col {
           animation-play-state: paused;
         }
 
+        /* ── Card ── */
+        .t-card {
+          background: #fff;
+          border: 1px solid #E8EDF2;
+          border-radius: 16px;
+          padding: 1.125rem 1.125rem 1rem;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+          flex-shrink: 0;
+          width: 100%;
+        }
+
+        .t-card-header {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.75rem;
+          margin-bottom: 0.875rem;
+        }
+
+        .t-avatar {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          object-fit: cover;
+          flex-shrink: 0;
+          border: 2px solid #F1F5F9;
+        }
+
+        .t-author-info {
+          min-width: 0;
+          flex: 1;
+        }
+
+        .t-name {
+          font-weight: 700;
+          font-size: 0.9rem;
+          color: #0F172A;
+          line-height: 1.25;
+        }
+
+        .t-handle {
+          font-size: 0.75rem;
+          color: #94A3B8;
+          margin-top: 0.1rem;
+        }
+
+        .t-location {
+          display: flex;
+          align-items: center;
+          gap: 0.3rem;
+          margin-top: 0.25rem;
+          font-size: 0.72rem;
+        }
+
+        .t-city {
+          color: #64748B;
+          font-weight: 500;
+        }
+
+        .t-text {
+          font-size: 0.88rem;
+          line-height: 1.65;
+          color: #374151;
+          margin: 0;
+        }
+
         /* ── Fades ── */
-        .t-fade-left,
-        .t-fade-right,
-        .t-fade-top,
-        .t-fade-bottom {
+        .t-fade {
           position: absolute;
           pointer-events: none;
           z-index: 2;
         }
 
+        .t-fade-top {
+          top: 0; left: 0; right: 0; height: 140px;
+          background: linear-gradient(to bottom, white 15%, transparent);
+        }
+
+        .t-fade-bottom {
+          bottom: 0; left: 0; right: 0; height: 140px;
+          background: linear-gradient(to top, white 15%, transparent);
+        }
+
         .t-fade-left {
-          left: 0; top: 0; bottom: 0; width: 80px;
+          left: 0; top: 0; bottom: 0; width: 100px;
           background: linear-gradient(to right, white 20%, transparent);
         }
 
         .t-fade-right {
-          right: 0; top: 0; bottom: 0; width: 80px;
+          right: 0; top: 0; bottom: 0; width: 100px;
           background: linear-gradient(to left, white 20%, transparent);
-        }
-
-        .t-fade-top {
-          top: 0; left: 0; right: 0; height: 160px;
-          background: linear-gradient(to bottom, white 20%, transparent);
-        }
-
-        .t-fade-bottom {
-          bottom: 0; left: 0; right: 0; height: 160px;
-          background: linear-gradient(to top, white 20%, transparent);
-        }
-
-        /* ── Card ── */
-        .t-card {
-          background: white;
-          border: 1px solid #E2E8F0;
-          border-radius: 14px;
-          padding: 1.125rem;
-          flex-shrink: 0;
-          box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-          width: 100%;
-        }
-
-        .t-text {
-          color: #334155;
-          font-size: 0.85rem;
-          line-height: 1.65;
-          margin-bottom: 0.875rem;
-        }
-
-        .t-author {
-          display: flex;
-          align-items: center;
-          gap: 0.625rem;
-        }
-
-        .t-avatar {
-          width: 34px;
-          height: 34px;
-          border-radius: 50%;
-          color: white;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 0.65rem;
-          font-weight: 700;
-          flex-shrink: 0;
-          border: 2px solid #F1F5F9;
-        }
-
-        .t-info { min-width: 0; }
-
-        .t-name {
-          display: flex;
-          align-items: center;
-          gap: 0.25rem;
-          font-weight: 700;
-          font-size: 0.78rem;
-          color: #0F172A;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
-
-        .t-badge { color: #2563EB; flex-shrink: 0; }
-
-        .t-role {
-          font-size: 0.68rem;
-          color: #94A3B8;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
         }
 
         /* ── Mobile ── */
         @media (max-width: 768px) {
-          .t-section { padding: 4rem 1rem; }
-          .t-marquee-outer { height: 420px; }
-          .t-col-wrapper:nth-child(3),
-          .t-col-wrapper:nth-child(4) { display: none; }
-          .t-col-wrapper { max-width: 50%; }
+          .t-stage { height: 420px; perspective: 400px; }
+          .t-grid { transform: rotateX(18deg) rotateZ(-3deg) scale(1.04); gap: 8px; }
+          .t-col-wrap:nth-child(3),
+          .t-col-wrap:nth-child(4) { display: none; }
         }
       `}</style>
     </section>
