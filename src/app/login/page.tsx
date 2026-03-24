@@ -4,9 +4,11 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import ThemeLangControls from "@/app/components/ThemeLangControls";
+import { useAppContext } from "@/app/context/AppContext";
 
 export default function LoginPage() {
   const router = useRouter();
+  const { t } = useAppContext();
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -44,8 +46,8 @@ export default function LoginPage() {
             <span style={{ fontSize: "2rem" }}>💰</span>
             <span style={{ fontWeight: 800, fontSize: "1.5rem", color: "#2563EB", letterSpacing: "-0.02em" }}>MoneyFlow</span>
           </Link>
-          <h1 style={{ fontSize: "1.375rem", fontWeight: 700, color: "var(--text-heading, #0F172A)", marginBottom: "0.375rem" }}>Entrar na sua conta</h1>
-          <p style={{ color: "var(--text-muted, #64748B)", fontSize: "0.875rem" }}>Bem-vindo de volta!</p>
+          <h1 style={{ fontSize: "1.375rem", fontWeight: 700, color: "var(--text-heading, #0F172A)", marginBottom: "0.375rem" }}>{t.login.title}</h1>
+          <p style={{ color: "var(--text-muted, #64748B)", fontSize: "0.875rem" }}>{t.login.subtitle}</p>
         </div>
 
         {/* Card */}
@@ -63,14 +65,14 @@ export default function LoginPage() {
                 type="email"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                placeholder="seu@email.com"
+                placeholder={t.login.emailPlaceholder}
                 required
                 style={{ background: "var(--section-bg, #F8FAFC)", color: "var(--foreground, #0F172A)", borderColor: "var(--border, #E2E8F0)" }}
               />
             </div>
             <div>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.375rem" }}>
-                <label style={{ margin: 0, color: "var(--text-heading, #0F172A)" }}>Senha</label>
+                <label style={{ margin: 0, color: "var(--text-heading, #0F172A)" }}>{t.login.passwordLabel}</label>
               </div>
               <input
                 type="password"
@@ -96,14 +98,14 @@ export default function LoginPage() {
                 transition: "background 0.15s",
               }}
             >
-              {loading ? "Entrando…" : "Entrar"}
+              {loading ? t.login.submitting : t.login.submitBtn}
             </button>
           </form>
 
           <div style={{ textAlign: "center", marginTop: "1.5rem", fontSize: "0.875rem", color: "var(--text-muted, #64748B)" }}>
-            Não tem conta?{" "}
+            {t.login.noAccount}{" "}
             <Link href="/register" style={{ color: "#2563EB", fontWeight: 600, textDecoration: "none" }}>
-              Criar conta grátis
+              {t.login.createAccount}
             </Link>
           </div>
         </div>
@@ -111,7 +113,7 @@ export default function LoginPage() {
         {/* Back to home */}
         <div style={{ textAlign: "center", marginTop: "1.5rem" }}>
           <Link href="/" style={{ color: "var(--text-muted, #64748B)", fontSize: "0.8125rem", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.375rem" }}>
-            ← Voltar ao início
+            {t.login.backHome}
           </Link>
         </div>
       </div>
