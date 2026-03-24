@@ -94,12 +94,12 @@ export default function TransactionsPage() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div className="page-header-row" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div>
           <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "#0F172A" }}>Transações</h1>
           <p style={{ color: "#64748B", fontSize: "0.875rem" }}>Gerencie suas entradas e saídas</p>
         </div>
-        <button onClick={() => setShowForm(true)} style={{ background: "#2563EB", color: "white", padding: "0.625rem 1.25rem", borderRadius: 8, fontWeight: 700, border: "none", cursor: "pointer", fontSize: "0.875rem" }}>
+        <button onClick={() => setShowForm(true)} style={{ background: "#2563EB", color: "white", padding: "0.625rem 1.25rem", borderRadius: 8, fontWeight: 700, border: "none", cursor: "pointer", fontSize: "0.875rem", whiteSpace: "nowrap" }}>
           + Nova Transação
         </button>
       </div>
@@ -177,19 +177,22 @@ export default function TransactionsPage() {
       )}
 
       {/* Table */}
-      <div style={{ background: "white", border: "1px solid #E2E8F0", borderRadius: 12, overflow: "hidden" }}>
+      <div className="table-scroll" style={{ background: "white", border: "1px solid #E2E8F0", borderRadius: 12, overflow: "hidden" }}>
         {filtered.length === 0 ? (
           <div style={{ padding: "3rem", textAlign: "center", color: "#94A3B8" }}>
             <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>💳</div>
             <p>Nenhuma transação encontrada</p>
           </div>
         ) : (
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 480 }}>
             <thead>
               <tr style={{ borderBottom: "1px solid #E2E8F0", background: "#F8FAFC" }}>
-                {["Descrição", "Categoria", "Conta", "Data", "Valor", ""].map((h) => (
-                  <th key={h} style={{ padding: "0.75rem 1rem", textAlign: "left", fontSize: "0.75rem", fontWeight: 600, color: "#64748B", textTransform: "uppercase", letterSpacing: "0.05em" }}>{h}</th>
-                ))}
+                <th style={{ padding: "0.75rem 1rem", textAlign: "left", fontSize: "0.75rem", fontWeight: 600, color: "#64748B", textTransform: "uppercase", letterSpacing: "0.05em" }}>Descrição</th>
+                <th className="hide-mobile" style={{ padding: "0.75rem 1rem", textAlign: "left", fontSize: "0.75rem", fontWeight: 600, color: "#64748B", textTransform: "uppercase", letterSpacing: "0.05em" }}>Categoria</th>
+                <th className="hide-mobile" style={{ padding: "0.75rem 1rem", textAlign: "left", fontSize: "0.75rem", fontWeight: 600, color: "#64748B", textTransform: "uppercase", letterSpacing: "0.05em" }}>Conta</th>
+                <th style={{ padding: "0.75rem 1rem", textAlign: "left", fontSize: "0.75rem", fontWeight: 600, color: "#64748B", textTransform: "uppercase", letterSpacing: "0.05em" }}>Data</th>
+                <th style={{ padding: "0.75rem 1rem", textAlign: "left", fontSize: "0.75rem", fontWeight: 600, color: "#64748B", textTransform: "uppercase", letterSpacing: "0.05em" }}>Valor</th>
+                <th style={{ padding: "0.75rem 1rem" }}></th>
               </tr>
             </thead>
             <tbody>
@@ -202,8 +205,8 @@ export default function TransactionsPage() {
                       {tx.recurring && <span style={{ fontSize: "0.65rem", background: "#EFF6FF", color: "#2563EB", padding: "0.1rem 0.4rem", borderRadius: 100, fontWeight: 700 }}>RECORRENTE</span>}
                     </div>
                   </td>
-                  <td style={{ padding: "0.875rem 1rem", fontSize: "0.875rem", color: "#64748B" }}>{tx.category?.name ?? "-"}</td>
-                  <td style={{ padding: "0.875rem 1rem", fontSize: "0.875rem", color: "#64748B" }}>{tx.account.name}</td>
+                  <td className="hide-mobile" style={{ padding: "0.875rem 1rem", fontSize: "0.875rem", color: "#64748B" }}>{tx.category?.name ?? "-"}</td>
+                  <td className="hide-mobile" style={{ padding: "0.875rem 1rem", fontSize: "0.875rem", color: "#64748B" }}>{tx.account.name}</td>
                   <td style={{ padding: "0.875rem 1rem", fontSize: "0.875rem", color: "#64748B" }}>{formatDate(tx.date)}</td>
                   <td style={{ padding: "0.875rem 1rem", fontSize: "0.875rem", fontWeight: 700, color: tx.type === "INCOME" ? "#22C55E" : "#EF4444" }}>
                     {tx.type === "INCOME" ? "+" : "-"}{formatCurrency(tx.amount)}

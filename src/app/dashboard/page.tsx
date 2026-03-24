@@ -101,7 +101,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Charts Row */}
-      <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "1.5rem" }}>
+      <div className="responsive-grid-charts" style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "1.5rem" }}>
         {/* Area Chart */}
         <div style={{ background: "white", border: "1px solid #E2E8F0", borderRadius: 12, padding: "1.5rem" }}>
           <h3 style={{ fontWeight: 700, color: "#0F172A", marginBottom: "1.25rem", fontSize: "0.9rem" }}>Receitas vs Despesas (6 meses)</h3>
@@ -141,7 +141,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Bottom Row */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+      <div className="responsive-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
         {/* Recent Transactions */}
         <div style={{ background: "white", border: "1px solid #E2E8F0", borderRadius: 12, padding: "1.5rem" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem" }}>
