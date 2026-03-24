@@ -1,5 +1,52 @@
 export type Lang = 'pt-BR' | 'en' | 'fr';
 
+export interface DashboardTranslations {
+  loading: string;
+  cancel: string;
+  save: string;
+  saving: string;
+  nav: { dashboard: string; transactions: string; budgets: string; goals: string; logout: string };
+  home: {
+    title: string; subtitle: string;
+    totalBalance: string; income: string; expenses: string; cashFlow: string;
+    chartRevExp: string; chartExpCat: string; noExpenses: string;
+    recentTx: string; noTx: string; viewAll: string;
+    budgetsTitle: string; noBudgets: string; manage: string;
+    goalsTitle: string;
+  };
+  transactions: {
+    title: string; subtitle: string; newBtn: string;
+    filterAll: string; filterIncome: string; filterExpense: string;
+    modalTitle: string;
+    typeLabel: string; typeIncome: string; typeExpense: string; typeTransfer: string;
+    amountLabel: string; accountLabel: string; categoryLabel: string; noCategory: string;
+    descLabel: string; descPlaceholder: string; dateLabel: string; recurringLabel: string;
+    saveBtn: string; empty: string;
+    colDesc: string; colCategory: string; colAccount: string; colDate: string; colAmount: string;
+    recurringBadge: string;
+    deleteConfirm: string;
+  };
+  budgets: {
+    title: string; subtitle: string; newBtn: string;
+    modalTitle: string; nameLabel: string; namePlaceholder: string;
+    limitLabel: string; categoryLabel: string; noCategory: string;
+    periodLabel: string; weekly: string; monthly: string; quarterly: string; annual: string;
+    startDateLabel: string; createBtn: string;
+    empty: string; emptyHint: string; general: string;
+    over: string; warn: string; used: string; remaining: string;
+    deleteConfirm: string;
+  };
+  goals: {
+    title: string; subtitle: string; newBtn: string;
+    modalTitle: string; nameLabel: string; namePlaceholder: string;
+    targetLabel: string; currentLabel: string; deadlineLabel: string; createBtn: string;
+    updateTitle: string; updateCurrentLabel: string; updateBtn: string;
+    empty: string; emptyHint: string;
+    reached: string; remaining: string; deadline: string;
+    deleteConfirm: string; updateAction: string;
+  };
+}
+
 export interface Translations {
   nav: {
     features: string;
@@ -53,6 +100,7 @@ export interface Translations {
   footer: {
     copy: string;
   };
+  dashboard: DashboardTranslations;
 }
 
 export const translations: Record<Lang, Translations> = {
@@ -113,6 +161,51 @@ export const translations: Record<Lang, Translations> = {
       btn: 'Criar conta gratuita →',
     },
     footer: { copy: '© 2026 MoneyFlow. Todos os direitos reservados.' },
+    dashboard: {
+      loading: 'Carregando...',
+      cancel: 'Cancelar',
+      save: 'Salvar',
+      saving: 'Salvando...',
+      nav: { dashboard: 'Dashboard', transactions: 'Transações', budgets: 'Orçamentos', goals: 'Metas', logout: 'Sair' },
+      home: {
+        title: 'Dashboard', subtitle: 'Visão geral das suas finanças',
+        totalBalance: 'Saldo Total', income: 'Receitas (mês)', expenses: 'Despesas (mês)', cashFlow: 'Fluxo de Caixa',
+        chartRevExp: 'Receitas vs Despesas (6 meses)', chartExpCat: 'Despesas por Categoria', noExpenses: 'Nenhuma despesa este mês',
+        recentTx: 'Últimas Transações', noTx: 'Nenhuma transação este mês', viewAll: 'Ver todas',
+        budgetsTitle: 'Orçamentos', noBudgets: 'Nenhum orçamento criado', manage: 'Gerenciar',
+        goalsTitle: 'Metas Financeiras',
+      },
+      transactions: {
+        title: 'Transações', subtitle: 'Gerencie suas entradas e saídas', newBtn: '+ Nova Transação',
+        filterAll: 'Todas', filterIncome: 'Receitas', filterExpense: 'Despesas',
+        modalTitle: 'Nova Transação',
+        typeLabel: 'Tipo', typeIncome: 'Receita', typeExpense: 'Despesa', typeTransfer: 'Transferência',
+        amountLabel: 'Valor (R$)', accountLabel: 'Conta', categoryLabel: 'Categoria', noCategory: 'Sem categoria',
+        descLabel: 'Descrição', descPlaceholder: 'Opcional', dateLabel: 'Data', recurringLabel: 'Recorrente',
+        saveBtn: 'Salvar', empty: 'Nenhuma transação encontrada',
+        colDesc: 'Descrição', colCategory: 'Categoria', colAccount: 'Conta', colDate: 'Data', colAmount: 'Valor',
+        recurringBadge: 'RECORRENTE', deleteConfirm: 'Excluir transação?',
+      },
+      budgets: {
+        title: 'Orçamentos', subtitle: 'Controle seus limites de gastos', newBtn: '+ Novo Orçamento',
+        modalTitle: 'Novo Orçamento', nameLabel: 'Nome', namePlaceholder: 'Ex: Alimentação do mês',
+        limitLabel: 'Limite (R$)', categoryLabel: 'Categoria', noCategory: 'Sem categoria',
+        periodLabel: 'Período', weekly: 'Semanal', monthly: 'Mensal', quarterly: 'Trimestral', annual: 'Anual',
+        startDateLabel: 'Data de início', createBtn: 'Criar Orçamento',
+        empty: 'Nenhum orçamento criado', emptyHint: 'Crie orçamentos para controlar seus gastos', general: 'Geral',
+        over: 'Limite ultrapassado!', warn: 'Atenção: 80%+', used: '% utilizado', remaining: 'Restam',
+        deleteConfirm: 'Excluir orçamento?',
+      },
+      goals: {
+        title: 'Metas Financeiras', subtitle: 'Defina e acompanhe seus objetivos', newBtn: '+ Nova Meta',
+        modalTitle: 'Nova Meta', nameLabel: 'Nome da meta', namePlaceholder: 'Ex: Fundo de emergência',
+        targetLabel: 'Valor alvo (R$)', currentLabel: 'Valor atual (R$)', deadlineLabel: 'Prazo (opcional)', createBtn: 'Criar Meta',
+        updateTitle: 'Atualizar progresso', updateCurrentLabel: 'Valor atual (R$)', updateBtn: 'Atualizar',
+        empty: 'Nenhuma meta criada', emptyHint: 'Defina objetivos financeiros para acompanhar seu progresso',
+        reached: 'Meta atingida!', remaining: 'faltam', deadline: 'Prazo:',
+        deleteConfirm: 'Excluir meta?', updateAction: 'Atualizar',
+      },
+    },
   },
 
   en: {
@@ -172,6 +265,51 @@ export const translations: Record<Lang, Translations> = {
       btn: 'Create free account →',
     },
     footer: { copy: '© 2026 MoneyFlow. All rights reserved.' },
+    dashboard: {
+      loading: 'Loading...',
+      cancel: 'Cancel',
+      save: 'Save',
+      saving: 'Saving...',
+      nav: { dashboard: 'Dashboard', transactions: 'Transactions', budgets: 'Budgets', goals: 'Goals', logout: 'Sign out' },
+      home: {
+        title: 'Dashboard', subtitle: 'Overview of your finances',
+        totalBalance: 'Total Balance', income: 'Income (month)', expenses: 'Expenses (month)', cashFlow: 'Cash Flow',
+        chartRevExp: 'Income vs Expenses (6 months)', chartExpCat: 'Expenses by Category', noExpenses: 'No expenses this month',
+        recentTx: 'Recent Transactions', noTx: 'No transactions this month', viewAll: 'View all',
+        budgetsTitle: 'Budgets', noBudgets: 'No budgets created', manage: 'Manage',
+        goalsTitle: 'Financial Goals',
+      },
+      transactions: {
+        title: 'Transactions', subtitle: 'Manage your income and expenses', newBtn: '+ New Transaction',
+        filterAll: 'All', filterIncome: 'Income', filterExpense: 'Expenses',
+        modalTitle: 'New Transaction',
+        typeLabel: 'Type', typeIncome: 'Income', typeExpense: 'Expense', typeTransfer: 'Transfer',
+        amountLabel: 'Amount ($)', accountLabel: 'Account', categoryLabel: 'Category', noCategory: 'No category',
+        descLabel: 'Description', descPlaceholder: 'Optional', dateLabel: 'Date', recurringLabel: 'Recurring',
+        saveBtn: 'Save', empty: 'No transactions found',
+        colDesc: 'Description', colCategory: 'Category', colAccount: 'Account', colDate: 'Date', colAmount: 'Amount',
+        recurringBadge: 'RECURRING', deleteConfirm: 'Delete transaction?',
+      },
+      budgets: {
+        title: 'Budgets', subtitle: 'Control your spending limits', newBtn: '+ New Budget',
+        modalTitle: 'New Budget', nameLabel: 'Name', namePlaceholder: 'e.g. Monthly groceries',
+        limitLabel: 'Limit ($)', categoryLabel: 'Category', noCategory: 'No category',
+        periodLabel: 'Period', weekly: 'Weekly', monthly: 'Monthly', quarterly: 'Quarterly', annual: 'Annual',
+        startDateLabel: 'Start date', createBtn: 'Create Budget',
+        empty: 'No budgets created', emptyHint: 'Create budgets to control your spending', general: 'General',
+        over: 'Limit exceeded!', warn: 'Warning: 80%+', used: '% used', remaining: 'Remaining',
+        deleteConfirm: 'Delete budget?',
+      },
+      goals: {
+        title: 'Financial Goals', subtitle: 'Set and track your objectives', newBtn: '+ New Goal',
+        modalTitle: 'New Goal', nameLabel: 'Goal name', namePlaceholder: 'e.g. Emergency fund',
+        targetLabel: 'Target amount ($)', currentLabel: 'Current amount ($)', deadlineLabel: 'Deadline (optional)', createBtn: 'Create Goal',
+        updateTitle: 'Update progress', updateCurrentLabel: 'Current amount ($)', updateBtn: 'Update',
+        empty: 'No goals created', emptyHint: 'Set financial goals to track your progress',
+        reached: 'Goal reached!', remaining: 'left', deadline: 'Deadline:',
+        deleteConfirm: 'Delete goal?', updateAction: 'Update',
+      },
+    },
   },
 
   fr: {
@@ -231,5 +369,50 @@ export const translations: Record<Lang, Translations> = {
       btn: 'Créer un compte gratuit →',
     },
     footer: { copy: '© 2026 MoneyFlow. Tous droits réservés.' },
+    dashboard: {
+      loading: 'Chargement...',
+      cancel: 'Annuler',
+      save: 'Enregistrer',
+      saving: 'Enregistrement...',
+      nav: { dashboard: 'Tableau de bord', transactions: 'Transactions', budgets: 'Budgets', goals: 'Objectifs', logout: 'Déconnexion' },
+      home: {
+        title: 'Tableau de bord', subtitle: 'Vue d\'ensemble de vos finances',
+        totalBalance: 'Solde total', income: 'Revenus (mois)', expenses: 'Dépenses (mois)', cashFlow: 'Flux de trésorerie',
+        chartRevExp: 'Revenus vs Dépenses (6 mois)', chartExpCat: 'Dépenses par catégorie', noExpenses: 'Aucune dépense ce mois',
+        recentTx: 'Transactions récentes', noTx: 'Aucune transaction ce mois', viewAll: 'Voir tout',
+        budgetsTitle: 'Budgets', noBudgets: 'Aucun budget créé', manage: 'Gérer',
+        goalsTitle: 'Objectifs financiers',
+      },
+      transactions: {
+        title: 'Transactions', subtitle: 'Gérez vos revenus et dépenses', newBtn: '+ Nouvelle transaction',
+        filterAll: 'Toutes', filterIncome: 'Revenus', filterExpense: 'Dépenses',
+        modalTitle: 'Nouvelle transaction',
+        typeLabel: 'Type', typeIncome: 'Revenu', typeExpense: 'Dépense', typeTransfer: 'Virement',
+        amountLabel: 'Montant (€)', accountLabel: 'Compte', categoryLabel: 'Catégorie', noCategory: 'Sans catégorie',
+        descLabel: 'Description', descPlaceholder: 'Optionnel', dateLabel: 'Date', recurringLabel: 'Récurrent',
+        saveBtn: 'Enregistrer', empty: 'Aucune transaction trouvée',
+        colDesc: 'Description', colCategory: 'Catégorie', colAccount: 'Compte', colDate: 'Date', colAmount: 'Montant',
+        recurringBadge: 'RÉCURRENT', deleteConfirm: 'Supprimer la transaction ?',
+      },
+      budgets: {
+        title: 'Budgets', subtitle: 'Contrôlez vos limites de dépenses', newBtn: '+ Nouveau budget',
+        modalTitle: 'Nouveau budget', nameLabel: 'Nom', namePlaceholder: 'Ex: Épicerie du mois',
+        limitLabel: 'Limite (€)', categoryLabel: 'Catégorie', noCategory: 'Sans catégorie',
+        periodLabel: 'Période', weekly: 'Hebdomadaire', monthly: 'Mensuel', quarterly: 'Trimestriel', annual: 'Annuel',
+        startDateLabel: 'Date de début', createBtn: 'Créer le budget',
+        empty: 'Aucun budget créé', emptyHint: 'Créez des budgets pour contrôler vos dépenses', general: 'Général',
+        over: 'Limite dépassée !', warn: 'Attention : 80%+', used: '% utilisé', remaining: 'Restant',
+        deleteConfirm: 'Supprimer le budget ?',
+      },
+      goals: {
+        title: 'Objectifs financiers', subtitle: 'Définissez et suivez vos objectifs', newBtn: '+ Nouvel objectif',
+        modalTitle: 'Nouvel objectif', nameLabel: "Nom de l'objectif", namePlaceholder: "Ex: Fonds d'urgence",
+        targetLabel: 'Montant cible (€)', currentLabel: 'Montant actuel (€)', deadlineLabel: 'Échéance (optionnel)', createBtn: "Créer l'objectif",
+        updateTitle: 'Mettre à jour la progression', updateCurrentLabel: 'Montant actuel (€)', updateBtn: 'Mettre à jour',
+        empty: 'Aucun objectif créé', emptyHint: 'Définissez des objectifs financiers pour suivre vos progrès',
+        reached: 'Objectif atteint !', remaining: 'restant', deadline: 'Échéance :',
+        deleteConfirm: "Supprimer l'objectif ?", updateAction: 'Mettre à jour',
+      },
+    },
   },
 };

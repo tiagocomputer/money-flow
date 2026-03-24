@@ -6,13 +6,6 @@ import { useState } from "react";
 import ThemeLangControls from "@/app/components/ThemeLangControls";
 import { useAppContext } from "@/app/context/AppContext";
 
-const navItems = [
-  { href: "/dashboard",              icon: "🏠", label: "Dashboard"  },
-  { href: "/dashboard/transactions", icon: "💳", label: "Transações" },
-  { href: "/dashboard/budgets",      icon: "🧾", label: "Orçamentos" },
-  { href: "/dashboard/goals",        icon: "🎯", label: "Metas"      },
-];
-
 interface Props {
   user: { name: string; email: string; plan: string };
 }
@@ -20,9 +13,16 @@ interface Props {
 export default function DashboardNav({ user }: Props) {
   const pathname = usePathname();
   const router = useRouter();
-  const { theme } = useAppContext();
+  const { theme, t } = useAppContext();
   const isDark = theme === "dark";
   const [open, setOpen] = useState(false);
+
+  const navItems = [
+    { href: "/dashboard",              icon: "🏠", label: t.dashboard.nav.dashboard    },
+    { href: "/dashboard/transactions", icon: "💳", label: t.dashboard.nav.transactions },
+    { href: "/dashboard/budgets",      icon: "🧾", label: t.dashboard.nav.budgets      },
+    { href: "/dashboard/goals",        icon: "🎯", label: t.dashboard.nav.goals        },
+  ];
 
   async function handleLogout() {
     await fetch("/api/auth/logout", { method: "POST" });
@@ -132,7 +132,7 @@ export default function DashboardNav({ user }: Props) {
             onClick={handleLogout}
             style={{ width: "100%", padding: "0.4375rem", background: isDark ? "rgba(220,38,38,0.12)" : "#FEF2F2", color: "#DC2626", border: `1px solid ${isDark ? "rgba(220,38,38,0.25)" : "#FECACA"}`, borderRadius: 8, fontWeight: 600, fontSize: "0.8rem", cursor: "pointer", transition: "background 0.15s" }}
           >
-            Sair
+            {t.dashboard.nav.logout}
           </button>
         </div>
       </aside>
