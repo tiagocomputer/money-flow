@@ -13,15 +13,11 @@ function daysAgo(months: number, day: number) {
   return d;
 }
 
-export async function createUser(name: string, email: string, password: string, plan = "TRIAL") {
-  const hashed = await bcrypt.hash(password, 12);
+async function createBaseUser(data: { name: string; email: string; password?: string; googleId?: string; plan: string }) {
   const user = await prisma.user.create({
     data: {
-      name,
-      email,
-      password: hashed,
-      plan,
-      trialEndsAt: plan === "TRIAL" ? new Date(Date.now() + 14 * 24 * 60 * 60 * 1000) : null,
+      ...data,
+      trialEndsAt: data.plan === "TRIAL" ? new Date(Date.now() + 14 * 24 * 60 * 60 * 1000) : null,
     },
   });
 
@@ -98,9 +94,26 @@ export async function createUser(name: string, email: string, password: string, 
   return user;
 }
 
+export async function createUser(name: string, email: string, password: string, plan = "TRIAL") {
+  const hashed = await bcrypt.hash(password, 12);
+  return createBaseUser({ name, email, password: hashed, plan });
+}
+
+export async function findOrCreateGoogleUser(googleId: string, email: string, name: string, plan = "TRIAL") {
+  const byGoogle = await prisma.user.findUnique({ where: { googleId } });
+  if (byGoogle) return byGoogle;
+
+  const byEmail = await prisma.user.findUnique({ where: { email } });
+  if (byEmail) {
+    return prisma.user.update({ where: { id: byEmail.id }, data: { googleId } });
+  }
+
+  return createBaseUser({ name, email, googleId, plan });
+}
+
 export async function validateUser(email: string, password: string) {
   const user = await getUserByEmail(email);
-  if (!user) return null;
+  if (!user || !user.password) return null;
   const valid = await bcrypt.compare(password, user.password);
   if (!valid) return null;
   return user;
