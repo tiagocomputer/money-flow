@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import ThemeLangControls from "@/app/components/ThemeLangControls";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -29,61 +30,89 @@ export default function LoginPage() {
   }
 
   return (
-    <div style={{ minHeight: "100vh", background: "#F8FAFC", display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem" }}>
+    <div style={{ minHeight: "100vh", background: "var(--section-bg, #F8FAFC)", display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem", position: "relative" }}>
+
+      {/* Top-right controls */}
+      <div style={{ position: "fixed", top: "1rem", right: "1.25rem", zIndex: 50 }}>
+        <ThemeLangControls />
+      </div>
+
       <div style={{ width: "100%", maxWidth: 420 }}>
+        {/* Logo */}
         <div style={{ textAlign: "center", marginBottom: "2rem" }}>
-          <Link href="/" style={{ textDecoration: "none" }}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem", marginBottom: "1.5rem" }}>
-              <span style={{ fontSize: "2rem" }}>💰</span>
-              <span style={{ fontWeight: 800, fontSize: "1.5rem", color: "#2563EB" }}>MoneyFlow</span>
-            </div>
+          <Link href="/" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.5rem" }}>
+            <span style={{ fontSize: "2rem" }}>💰</span>
+            <span style={{ fontWeight: 800, fontSize: "1.5rem", color: "#2563EB", letterSpacing: "-0.02em" }}>MoneyFlow</span>
           </Link>
-          <h1 style={{ fontSize: "1.5rem", fontWeight: 700, color: "#0F172A", marginBottom: "0.5rem" }}>Entrar na sua conta</h1>
-          <p style={{ color: "#64748B", fontSize: "0.875rem" }}>Bem-vindo de volta!</p>
+          <h1 style={{ fontSize: "1.375rem", fontWeight: 700, color: "var(--text-heading, #0F172A)", marginBottom: "0.375rem" }}>Entrar na sua conta</h1>
+          <p style={{ color: "var(--text-muted, #64748B)", fontSize: "0.875rem" }}>Bem-vindo de volta!</p>
         </div>
 
-        <div style={{ background: "white", border: "1px solid #E2E8F0", borderRadius: 16, padding: "2rem" }}>
+        {/* Card */}
+        <div style={{ background: "var(--section-white, white)", border: "1px solid var(--border, #E2E8F0)", borderRadius: 16, padding: "2rem", boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}>
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
             {error && (
-              <div style={{ background: "#FEF2F2", border: "1px solid #FECACA", color: "#DC2626", padding: "0.75rem", borderRadius: 8, fontSize: "0.875rem" }}>
+              <div style={{ background: "#FEF2F2", border: "1px solid #FECACA", color: "#DC2626", padding: "0.75rem", borderRadius: 8, fontSize: "0.875rem", display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
+                <span>⚠️</span>
                 {error}
               </div>
             )}
             <div>
-              <label>Email</label>
+              <label style={{ color: "var(--text-heading, #0F172A)" }}>Email</label>
               <input
                 type="email"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 placeholder="seu@email.com"
                 required
+                style={{ background: "var(--section-bg, #F8FAFC)", color: "var(--foreground, #0F172A)", borderColor: "var(--border, #E2E8F0)" }}
               />
             </div>
             <div>
-              <label>Senha</label>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.375rem" }}>
+                <label style={{ margin: 0, color: "var(--text-heading, #0F172A)" }}>Senha</label>
+              </div>
               <input
                 type="password"
                 value={form.password}
                 onChange={(e) => setForm({ ...form, password: e.target.value })}
                 placeholder="••••••••"
                 required
+                style={{ background: "var(--section-bg, #F8FAFC)", color: "var(--foreground, #0F172A)", borderColor: "var(--border, #E2E8F0)" }}
               />
             </div>
             <button
               type="submit"
               disabled={loading}
-              style={{ background: "#2563EB", color: "white", padding: "0.75rem", borderRadius: 8, fontWeight: 700, border: "none", cursor: loading ? "not-allowed" : "pointer", opacity: loading ? 0.7 : 1, fontSize: "0.9rem" }}
+              style={{
+                background: loading ? "#93C5FD" : "#2563EB",
+                color: "white",
+                padding: "0.75rem",
+                borderRadius: 8,
+                fontWeight: 700,
+                border: "none",
+                cursor: loading ? "not-allowed" : "pointer",
+                fontSize: "0.9rem",
+                transition: "background 0.15s",
+              }}
             >
-              {loading ? "Entrando..." : "Entrar"}
+              {loading ? "Entrando…" : "Entrar"}
             </button>
           </form>
 
-          <div style={{ textAlign: "center", marginTop: "1.5rem", fontSize: "0.875rem", color: "#64748B" }}>
+          <div style={{ textAlign: "center", marginTop: "1.5rem", fontSize: "0.875rem", color: "var(--text-muted, #64748B)" }}>
             Não tem conta?{" "}
             <Link href="/register" style={{ color: "#2563EB", fontWeight: 600, textDecoration: "none" }}>
               Criar conta grátis
             </Link>
           </div>
+        </div>
+
+        {/* Back to home */}
+        <div style={{ textAlign: "center", marginTop: "1.5rem" }}>
+          <Link href="/" style={{ color: "var(--text-muted, #64748B)", fontSize: "0.8125rem", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.375rem" }}>
+            ← Voltar ao início
+          </Link>
         </div>
       </div>
     </div>
