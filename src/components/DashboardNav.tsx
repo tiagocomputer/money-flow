@@ -59,12 +59,13 @@ export default function DashboardNav({ user }: Props) {
           </div>
           {/* Close button inside sidebar (mobile) */}
           <button
-            onClick={close}
+            onClick={(e) => { e.stopPropagation(); close(); }}
             aria-label="Fechar menu"
-            style={{ background: "none", border: "none", cursor: "pointer", fontSize: "1.25rem", color: "#94A3B8", lineHeight: 1, padding: "0.25rem", display: "flex", alignItems: "center" }}
             className="sidebar-close-btn"
           >
-            ✕
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 2L16 16M16 2L2 16" stroke="#64748B" strokeWidth="2.2" strokeLinecap="round"/>
+            </svg>
           </button>
         </div>
 

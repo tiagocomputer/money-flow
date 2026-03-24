@@ -73,6 +73,20 @@
 /* Hide close button on desktop */
 .sidebar-close-btn {
   display: none;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.sidebar-close-btn:hover {
+  background: #F1F5F9;
 }
 
 @media (max-width: 768px) {
