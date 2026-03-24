@@ -2,6 +2,7 @@ import Link from "next/link";
 import PricingCards from "./components/PricingCards";
 import HeroSection from "./components/HeroSection";
 import Testimonials from "./components/Testimonials";
+import Header from "./components/Header";
 
 const features = [
   {
@@ -46,20 +47,7 @@ export default function LandingPage() {
   return (
     <div style={{ background: "#F8FAFC", minHeight: "100vh" }}>
       {/* Header */}
-      <header style={{ background: "white", borderBottom: "1px solid #E2E8F0", position: "sticky", top: 0, zIndex: 50 }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "1rem 2rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-            <span style={{ fontSize: "1.5rem" }}>💰</span>
-            <span style={{ fontWeight: 700, fontSize: "1.125rem", color: "#2563EB" }}>MoneyFlow</span>
-          </div>
-          <nav style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
-            <Link href="#features" style={{ color: "#64748B", textDecoration: "none", fontSize: "0.875rem" }}>Funcionalidades</Link>
-            <Link href="#pricing" style={{ color: "#64748B", textDecoration: "none", fontSize: "0.875rem" }}>Preços</Link>
-            <Link href="/login" style={{ color: "#2563EB", border: "1px solid #2563EB", padding: "0.5rem 1rem", borderRadius: 8, textDecoration: "none", fontWeight: 600, fontSize: "0.875rem" }}>Entrar</Link>
-            <Link href="/register" style={{ background: "#2563EB", color: "white", padding: "0.5rem 1rem", borderRadius: 8, textDecoration: "none", fontWeight: 600, fontSize: "0.875rem" }}>Começar grátis</Link>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero */}
       <HeroSection />
