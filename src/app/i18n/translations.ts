@@ -112,7 +112,7 @@ export const translations: Record<Lang, Translations> = {
       subtitle: '14 dias grátis, sem cartão de crédito, sem compromisso.',
       btn: 'Criar conta gratuita →',
     },
-    footer: { copy: '© 2024 MoneyFlow. Todos os direitos reservados.' },
+    footer: { copy: '© 2026 MoneyFlow. Todos os direitos reservados.' },
   },
 
   en: {
@@ -171,7 +171,7 @@ export const translations: Record<Lang, Translations> = {
       subtitle: '14-day free trial, no credit card, no commitment.',
       btn: 'Create free account →',
     },
-    footer: { copy: '© 2024 MoneyFlow. All rights reserved.' },
+    footer: { copy: '© 2026 MoneyFlow. All rights reserved.' },
   },
 
   fr: {
@@ -230,6 +230,6 @@ export const translations: Record<Lang, Translations> = {
       subtitle: '14 jours gratuits, sans carte de crédit, sans engagement.',
       btn: 'Créer un compte gratuit →',
     },
-    footer: { copy: '© 2024 MoneyFlow. Tous droits réservés.' },
+    footer: { copy: '© 2026 MoneyFlow. Tous droits réservés.' },
   },
 };

@@ -7,7 +7,7 @@ import type { Lang } from "../i18n/translations";
 const LANGS: { value: Lang; flag: string; short: string; name: string }[] = [
   { value: "pt-BR", flag: "🇧🇷", short: "PT", name: "Português" },
   { value: "en",    flag: "🇺🇸", short: "EN", name: "English"   },
-  { value: "fr",    flag: "🇫🇷", short: "FR", name: "Français"  },
+  { value: "fr",    flag: "🇨🇦", short: "FR", name: "Français CA" },
 ];
 
 interface Props {
