@@ -188,7 +188,7 @@ export default function Testimonials() {
           margin: 0 auto;
         }
 
-        /* ── Marquee outer: matches the selector exactly ── */
+        /* ── Marquee outer: perspective lives here ── */
         .t-marquee-outer {
           position: relative;
           display: flex;
@@ -198,18 +198,21 @@ export default function Testimonials() {
           align-items: center;
           justify-content: center;
           overflow: hidden;
+          perspective: 300px;
         }
 
-        /* ── Inner container with perspective:300px ── */
+        /* ── Inner grid: rotateX creates the "lying down" tilt ── */
         .t-marquee-inner {
           display: flex;
           flex-direction: row;
-          align-items: center;
+          align-items: flex-start;
           justify-content: center;
-          gap: 6px; /* gap-1.5 = 6px */
+          gap: 6px;
           height: 100%;
           width: 100%;
-          perspective: 300px;
+          transform: rotateX(25deg);
+          transform-origin: center center;
+          transform-style: preserve-3d;
         }
 
         /* ── Each column ── */
@@ -266,13 +269,13 @@ export default function Testimonials() {
         }
 
         .t-fade-top {
-          top: 0; left: 0; right: 0; height: 120px;
-          background: linear-gradient(to bottom, white 10%, transparent);
+          top: 0; left: 0; right: 0; height: 160px;
+          background: linear-gradient(to bottom, white 20%, transparent);
         }
 
         .t-fade-bottom {
-          bottom: 0; left: 0; right: 0; height: 120px;
-          background: linear-gradient(to top, white 10%, transparent);
+          bottom: 0; left: 0; right: 0; height: 160px;
+          background: linear-gradient(to top, white 20%, transparent);
         }
 
         /* ── Card ── */
