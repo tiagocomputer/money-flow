@@ -379,7 +379,7 @@ export const translations: Record<Lang, Translations> = {
     },
     stats: [
       { num: '10k+', label: 'Utilisateurs actifs' },
-      { num: 'CA$50M+', label: 'Gérés' },
+      { num: '50M CAD+', label: 'Gérés' },
       { num: '99.9%', label: 'Disponibilité' },
       { num: '4.9★', label: 'Note moyenne' },
     ],
@@ -404,9 +404,9 @@ export const translations: Record<Lang, Translations> = {
       subtitle: 'Commencez gratuitement et évoluez selon vos besoins',
       popular: 'LE PLUS POPULAIRE',
       plans: [
-        { name: 'FREE', price: 'CA$0', period: '/mois', description: 'Pour démarrer', features: ['1 compte bancaire', '20 transactions/mois', 'Tableau de bord basique', 'Catégories par défaut'], cta: 'Commencer gratuitement', href: '/register', highlighted: false },
+        { name: 'FREE', price: '0 CAD', period: '/mois', description: 'Pour démarrer', features: ['1 compte bancaire', '20 transactions/mois', 'Tableau de bord basique', 'Catégories par défaut'], cta: 'Commencer gratuitement', href: '/register', highlighted: false },
         { name: 'TRIAL', price: '14 jours', period: 'gratuit', description: 'Essayez tout', features: ['Tout illimité', 'Tableau de bord complet', 'Rapports automatiques', 'Support prioritaire'], cta: "Démarrer l'essai", href: '/register?plan=trial', highlighted: false },
-        { name: 'PRO', price: 'CA$19', period: '/mois', description: 'Pour les utilisateurs sérieux', features: ['Comptes illimités', 'Transactions illimitées', 'KPIs avancés', 'Automatisations', 'Rapports complets', 'Support prioritaire'], cta: "S'abonner PRO", href: '/register?plan=pro', highlighted: true },
+        { name: 'PRO', price: '19 CAD', period: '/mois', description: 'Pour les utilisateurs sérieux', features: ['Comptes illimités', 'Transactions illimitées', 'KPIs avancés', 'Automatisations', 'Rapports complets', 'Support prioritaire'], cta: "S'abonner PRO", href: '/register?plan=pro', highlighted: true },
       ],
     },
     cta: {
@@ -434,7 +434,7 @@ export const translations: Record<Lang, Translations> = {
         filterAll: 'Toutes', filterIncome: 'Revenus', filterExpense: 'Dépenses',
         modalTitle: 'Nouvelle transaction',
         typeLabel: 'Type', typeIncome: 'Revenu', typeExpense: 'Dépense', typeTransfer: 'Virement',
-        amountLabel: 'Montant (CA$)', accountLabel: 'Compte', categoryLabel: 'Catégorie', noCategory: 'Sans catégorie',
+        amountLabel: 'Montant (CAD)', accountLabel: 'Compte', categoryLabel: 'Catégorie', noCategory: 'Sans catégorie',
         descLabel: 'Description', descPlaceholder: 'Optionnel', dateLabel: 'Date', recurringLabel: 'Récurrent',
         saveBtn: 'Enregistrer', empty: 'Aucune transaction trouvée',
         colDesc: 'Description', colCategory: 'Catégorie', colAccount: 'Compte', colDate: 'Date', colAmount: 'Montant',
@@ -443,7 +443,7 @@ export const translations: Record<Lang, Translations> = {
       budgets: {
         title: 'Budgets', subtitle: 'Contrôlez vos limites de dépenses', newBtn: '+ Nouveau budget',
         modalTitle: 'Nouveau budget', nameLabel: 'Nom', namePlaceholder: 'Ex: Épicerie du mois',
-        limitLabel: 'Limite (CA$)', categoryLabel: 'Catégorie', noCategory: 'Sans catégorie',
+        limitLabel: 'Limite (CAD)', categoryLabel: 'Catégorie', noCategory: 'Sans catégorie',
         periodLabel: 'Période', weekly: 'Hebdomadaire', monthly: 'Mensuel', quarterly: 'Trimestriel', annual: 'Annuel',
         startDateLabel: 'Date de début', createBtn: 'Créer le budget',
         empty: 'Aucun budget créé', emptyHint: 'Créez des budgets pour contrôler vos dépenses', general: 'Général',
@@ -453,8 +453,8 @@ export const translations: Record<Lang, Translations> = {
       goals: {
         title: 'Objectifs financiers', subtitle: 'Définissez et suivez vos objectifs', newBtn: '+ Nouvel objectif',
         modalTitle: 'Nouvel objectif', nameLabel: "Nom de l'objectif", namePlaceholder: "Ex: Fonds d'urgence",
-        targetLabel: 'Montant cible (CA$)', currentLabel: 'Montant actuel (CA$)', deadlineLabel: 'Échéance (optionnel)', createBtn: "Créer l'objectif",
-        updateTitle: 'Mettre à jour la progression', updateCurrentLabel: 'Montant actuel (CA$)', updateBtn: 'Mettre à jour',
+        targetLabel: 'Montant cible (CAD)', currentLabel: 'Montant actuel (CAD)', deadlineLabel: 'Échéance (optionnel)', createBtn: "Créer l'objectif",
+        updateTitle: 'Mettre à jour la progression', updateCurrentLabel: 'Montant actuel (CAD)', updateBtn: 'Mettre à jour',
         empty: 'Aucun objectif créé', emptyHint: 'Définissez des objectifs financiers pour suivre vos progrès',
         reached: 'Objectif atteint !', remaining: 'restant', deadline: 'Échéance :',
         deleteConfirm: "Supprimer l'objectif ?", updateAction: 'Mettre à jour',
