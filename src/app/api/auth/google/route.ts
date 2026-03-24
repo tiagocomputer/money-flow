@@ -6,6 +6,7 @@ export async function GET(req: NextRequest) {
   const clientId = process.env.GOOGLE_CLIENT_ID;
   console.log("[google-auth] GOOGLE_CLIENT_ID:", clientId ? "LOADED ✓" : "UNDEFINED ✗");
   console.log("[google-auth] NODE_ENV:", process.env.NODE_ENV);
+  console.log("[google-auth] cwd:", process.cwd());
   if (!clientId) {
     return NextResponse.redirect(new URL("/login?error=google_not_configured", req.url));
   }
