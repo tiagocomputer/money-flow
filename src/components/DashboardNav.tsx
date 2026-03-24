@@ -31,11 +31,12 @@ export default function DashboardNav({ user }: Props) {
 
   return (
     <>
-      {/* Hamburger button – only visible on mobile via CSS */}
+      {/* Hamburger button – only visible on mobile, hidden when sidebar is open */}
       <button
         className="hamburger-btn"
-        onClick={() => setOpen((v) => !v)}
-        aria-label={open ? "Fechar menu" : "Abrir menu"}
+        style={open ? { display: "none" } : undefined}
+        onClick={() => setOpen(true)}
+        aria-label="Abrir menu"
       >
         <span />
         <span />

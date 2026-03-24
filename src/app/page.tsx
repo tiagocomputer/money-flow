@@ -1,6 +1,7 @@
 import Link from "next/link";
 import PricingCards from "./components/PricingCards";
 import HeroSection from "./components/HeroSection";
+import Testimonials from "./components/Testimonials";
 
 const features = [
   {
@@ -104,6 +105,9 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials */}
+      <Testimonials />
 
       {/* Pricing */}
       <section id="pricing" style={{ padding: "5rem 2rem", background: "white" }}>
