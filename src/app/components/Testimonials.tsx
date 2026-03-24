@@ -1,5 +1,7 @@
 "use client";
 
+import { useAppContext } from "../context/AppContext";
+
 interface Testimonial {
   text: string;
   author: {
@@ -121,6 +123,7 @@ function chunk(arr: Testimonial[], cols: number): Testimonial[][] {
 }
 
 export default function Testimonials() {
+  const { t } = useAppContext();
   const columns = chunk(testimonials, 4);
 
   return (
@@ -131,11 +134,9 @@ export default function Testimonials() {
 
         {/* Header — identical typographic scale to Features section */}
         <div className="t-header">
-          <div className="t-pill">Depoimentos</div>
-          <h2 className="t-title">O que nossos clientes dizem</h2>
-          <p className="t-sub">
-            Mais de 10.000 profissionais e empresas confiam no MoneyFlow para controlar suas finanças.
-          </p>
+          <div className="t-pill">{t.testimonials.pill}</div>
+          <h2 className="t-title">{t.testimonials.title}</h2>
+          <p className="t-sub">{t.testimonials.subtitle}</p>
         </div>
 
         {/* Stage lives inside the container — never exceeds 1200px */}

@@ -9,6 +9,108 @@
   --card: #FFFFFF;
   --border: #E2E8F0;
   --sidebar-width: 240px;
+  --section-bg: #F8FAFC;
+  --section-white: #FFFFFF;
+  --text-heading: #0F172A;
+  --text-muted: #64748B;
+  --text-body: #374151;
+}
+
+html[data-theme="dark"] {
+  --background: #0F172A;
+  --foreground: #E2E8F0;
+  --card: #1E293B;
+  --border: #334155;
+  --muted: #64748B;
+  --section-bg: #0F172A;
+  --section-white: #1E293B;
+  --text-heading: #F1F5F9;
+  --text-muted: #94A3B8;
+  --text-body: #CBD5E1;
+}
+
+/* ── Dark mode global overrides ── */
+html[data-theme="dark"] body {
+  background: var(--background) !important;
+  color: var(--foreground) !important;
+}
+
+html[data-theme="dark"] header {
+  background: var(--section-white) !important;
+  border-color: var(--border) !important;
+}
+
+html[data-theme="dark"] section {
+  background-color: var(--section-bg) !important;
+  color: var(--foreground) !important;
+  border-color: var(--border) !important;
+}
+
+html[data-theme="dark"] footer {
+  background: #020817 !important;
+}
+
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3 {
+  color: var(--text-heading) !important;
+}
+
+html[data-theme="dark"] p {
+  color: var(--text-muted) !important;
+}
+
+/* Cards */
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .t-card {
+  background: var(--card) !important;
+  border-color: var(--border) !important;
+  color: var(--foreground) !important;
+}
+
+/* Feature cards (inline styled divs inside features section) */
+html[data-theme="dark"] #features > div > div > div {
+  background: var(--card) !important;
+  border-color: var(--border) !important;
+}
+
+/* Stats section */
+html[data-theme="dark"] section > div > div {
+  color: var(--foreground);
+}
+
+/* Testimonials */
+html[data-theme="dark"] .t-section {
+  background: var(--section-white) !important;
+}
+html[data-theme="dark"] .t-card {
+  background: var(--card) !important;
+  border-color: var(--border) !important;
+}
+html[data-theme="dark"] .t-name { color: var(--text-heading) !important; }
+html[data-theme="dark"] .t-text { color: var(--text-body) !important; }
+html[data-theme="dark"] .t-title { color: var(--text-heading) !important; }
+html[data-theme="dark"] .t-sub { color: var(--text-muted) !important; }
+html[data-theme="dark"] .t-fade-top { background: linear-gradient(to bottom, var(--section-white) 10%, transparent) !important; }
+html[data-theme="dark"] .t-fade-bottom { background: linear-gradient(to top, var(--section-white) 10%, transparent) !important; }
+html[data-theme="dark"] .t-fade-left { background: linear-gradient(to right, var(--section-white) 15%, transparent) !important; }
+html[data-theme="dark"] .t-fade-right { background: linear-gradient(to left, var(--section-white) 15%, transparent) !important; }
+
+/* Drawer */
+html[data-theme="dark"] .hdr-drawer {
+  background: var(--section-white) !important;
+}
+html[data-theme="dark"] .hdr-close {
+  background: var(--card) !important;
+  border-color: var(--border) !important;
+}
+html[data-theme="dark"] .hdr-close:hover { background: var(--background) !important; }
+html[data-theme="dark"] .hdr-hamburger span { background: #CBD5E1 !important; }
+
+/* Pricing cards */
+html[data-theme="dark"] section[id="pricing"] > div > div > div {
+  background: var(--section-white) !important;
+  border-color: var(--border) !important;
 }
 
 /* ── Dashboard layout ── */
