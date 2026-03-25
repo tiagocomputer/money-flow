@@ -8,6 +8,245 @@
   --muted: #94A3B8;
   --card: #FFFFFF;
   --border: #E2E8F0;
+  --sidebar-width: 240px;
+  --section-bg: #F8FAFC;
+  --section-white: #FFFFFF;
+  --text-heading: #0F172A;
+  --text-muted: #64748B;
+  --text-body: #374151;
+}
+
+html[data-theme="dark"] {
+  --background: #0F172A;
+  --foreground: #E2E8F0;
+  --card: #1E293B;
+  --border: #334155;
+  --muted: #64748B;
+  --section-bg: #0F172A;
+  --section-white: #1E293B;
+  --text-heading: #F1F5F9;
+  --text-muted: #94A3B8;
+  --text-body: #CBD5E1;
+}
+
+/* ── Dark mode global overrides ── */
+html[data-theme="dark"] body {
+  background: var(--background) !important;
+  color: var(--foreground) !important;
+}
+
+html[data-theme="dark"] header {
+  background: var(--section-white) !important;
+  border-color: var(--border) !important;
+}
+
+html[data-theme="dark"] section {
+  background-color: var(--section-bg) !important;
+  color: var(--foreground) !important;
+  border-color: var(--border) !important;
+}
+
+html[data-theme="dark"] footer {
+  background: #020817 !important;
+}
+
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3 {
+  color: var(--text-heading) !important;
+}
+
+html[data-theme="dark"] p {
+  color: var(--text-muted) !important;
+}
+
+/* Cards */
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .t-card {
+  background: var(--card) !important;
+  border-color: var(--border) !important;
+  color: var(--foreground) !important;
+}
+
+/* Feature cards (inline styled divs inside features section) */
+html[data-theme="dark"] #features > div > div > div {
+  background: var(--card) !important;
+  border-color: var(--border) !important;
+}
+
+/* Stats section */
+html[data-theme="dark"] section > div > div {
+  color: var(--foreground);
+}
+
+/* Testimonials */
+html[data-theme="dark"] .t-section {
+  background: var(--section-white) !important;
+}
+html[data-theme="dark"] .t-card {
+  background: var(--card) !important;
+  border-color: var(--border) !important;
+}
+html[data-theme="dark"] .t-name { color: var(--text-heading) !important; }
+html[data-theme="dark"] .t-text { color: var(--text-body) !important; }
+html[data-theme="dark"] .t-title { color: var(--text-heading) !important; }
+html[data-theme="dark"] .t-sub { color: var(--text-muted) !important; }
+html[data-theme="dark"] .t-fade-top { background: linear-gradient(to bottom, var(--section-white) 10%, transparent) !important; }
+html[data-theme="dark"] .t-fade-bottom { background: linear-gradient(to top, var(--section-white) 10%, transparent) !important; }
+html[data-theme="dark"] .t-fade-left { background: linear-gradient(to right, var(--section-white) 15%, transparent) !important; }
+html[data-theme="dark"] .t-fade-right { background: linear-gradient(to left, var(--section-white) 15%, transparent) !important; }
+
+/* Drawer */
+html[data-theme="dark"] .hdr-drawer {
+  background: var(--section-white) !important;
+}
+html[data-theme="dark"] .hdr-close {
+  background: var(--card) !important;
+  border-color: var(--border) !important;
+}
+html[data-theme="dark"] .hdr-close:hover { background: var(--background) !important; }
+html[data-theme="dark"] .hdr-hamburger span { background: #CBD5E1 !important; }
+
+/* Pricing cards */
+html[data-theme="dark"] section[id="pricing"] > div > div > div {
+  background: var(--section-white) !important;
+  border-color: var(--border) !important;
+}
+
+/* ── Dashboard layout ── */
+.dashboard-sidebar {
+  width: var(--sidebar-width);
+  background: var(--section-white, white);
+  border-right: 1px solid var(--border);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 40;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.dashboard-main {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  padding: 2rem;
+  max-width: calc(100% - var(--sidebar-width));
+  min-height: 100vh;
+}
+
+.dashboard-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 39;
+}
+
+.hamburger-btn {
+  display: none;
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 50;
+  width: 40px;
+  height: 40px;
+  background: var(--section-white, white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  transition: background 0.25s ease;
+}
+
+.hamburger-btn span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #475569;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+/* Hide close button on desktop */
+.sidebar-close-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.sidebar-close-btn:hover {
+  background: #F1F5F9;
+}
+
+@media (max-width: 768px) {
+  .dashboard-sidebar {
+    transform: translateX(-100%);
+  }
+
+  .dashboard-sidebar.sidebar-open {
+    transform: translateX(0);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .dashboard-overlay.sidebar-open {
+    display: block;
+  }
+
+  .dashboard-main {
+    margin-left: 0;
+    max-width: 100%;
+    padding: 1rem;
+    padding-top: 4rem;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .sidebar-close-btn {
+    display: flex !important;
+  }
+
+  /* Responsive grids */
+  .responsive-grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+
+  .responsive-grid-charts {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Page header stacking */
+  .page-header-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+  }
+
+  /* Transaction table scroll */
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Hide less important table columns */
+  .hide-mobile {
+    display: none !important;
+  }
 }
 
 @theme inline {
@@ -22,14 +261,31 @@
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: "Inter", Arial, Helvetica, sans-serif;
+  transition: background 0.25s ease, color 0.25s ease;
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* ── Accessible focus ring ── */
+:focus-visible {
+  outline: 2px solid #2563EB;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Button hover lift (global) ── */
+button:not(:disabled):active {
+  transform: scale(0.97);
 }
 
 .card {
@@ -72,25 +328,30 @@ body {
 }
 
 input, select, textarea {
-  background: white;
-  border: 1px solid var(--border);
+  background: var(--section-bg, white);
+  color: var(--foreground, #0F172A);
+  border: 1px solid var(--border, #E2E8F0);
   border-radius: 8px;
   padding: 0.625rem 0.875rem;
   font-size: 0.875rem;
   width: 100%;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
   outline: none;
 }
 
 input:focus, select:focus, textarea:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--muted, #94A3B8);
 }
 
 label {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #374151;
+  color: var(--text-heading, #374151);
   display: block;
   margin-bottom: 0.375rem;
 }

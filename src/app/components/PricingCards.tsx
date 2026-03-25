@@ -3,65 +3,21 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
-const plans = [
-  {
-    name: "FREE",
-    price: "R$ 0",
-    period: "/mês",
-    description: "Para começar",
-    features: ["1 conta bancária", "20 transações/mês", "Dashboard básico", "Categorias padrão"],
-    cta: "Começar grátis",
-    href: "/register",
-    highlighted: false,
-  },
-  {
-    name: "TRIAL",
-    price: "14 dias",
-    period: "grátis",
-    description: "Experimente tudo",
-    features: ["Tudo ilimitado", "Dashboard completo", "Relatórios automáticos", "Suporte prioritário"],
-    cta: "Iniciar trial",
-    href: "/register?plan=trial",
-    highlighted: false,
-  },
-  {
-    name: "PRO",
-    price: "R$ 97",
-    period: "/mês",
-    description: "Para quem é sério",
-    features: [
-      "Contas ilimitadas",
-      "Transações ilimitadas",
-      "KPIs avançados",
-      "Automações",
-      "Relatórios completos",
-      "Suporte prioritário",
-    ],
-    cta: "Assinar PRO",
-    href: "/register?plan=pro",
-    highlighted: true,
-  },
-];
+import { useAppContext } from "../context/AppContext";
 
 export default function PricingCards() {
+  const { t } = useAppContext();
   const router = useRouter();
   const [hovered, setHovered] = useState<string | null>(null);
+  const { plans, popular } = t.pricing;
 
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-        gap: "1.5rem",
-      }}
-    >
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
       {plans.map((plan) => {
         const isHovered = hovered === plan.name;
-
-        const borderColor = isHovered ? "#2563EB" : plan.highlighted ? "#2563EB" : "#E2E8F0";
+        const borderColor = isHovered ? "#2563EB" : plan.highlighted ? "#2563EB" : "var(--border, #E2E8F0)";
         const borderWidth = plan.highlighted || isHovered ? 2 : 1;
-        const bgColor = plan.highlighted ? "#EFF6FF" : isHovered ? "#F8FAFC" : "white";
+        const bgColor = plan.highlighted ? "#EFF6FF" : isHovered ? "var(--background, #F8FAFC)" : "var(--section-white, white)";
         const shadow = isHovered ? "0 8px 24px rgba(37, 99, 235, 0.12)" : "none";
         const scale = isHovered ? "scale(1.015)" : "scale(1)";
 
@@ -85,48 +41,23 @@ export default function PricingCards() {
             }}
           >
             {plan.highlighted && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: -12,
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  background: "#2563EB",
-                  color: "white",
-                  padding: "0.25rem 0.875rem",
-                  borderRadius: 100,
-                  fontSize: "0.75rem",
-                  fontWeight: 700,
-                  whiteSpace: "nowrap",
-                }}
-              >
-                MAIS POPULAR
+              <div style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "#2563EB", color: "white", padding: "0.25rem 0.875rem", borderRadius: 100, fontSize: "0.75rem", fontWeight: 700, whiteSpace: "nowrap" }}>
+                {popular}
               </div>
             )}
 
             <div style={{ marginBottom: "1.5rem" }}>
-              <div style={{ fontWeight: 700, fontSize: "1rem", color: "#64748B", marginBottom: "0.5rem" }}>
-                {plan.name}
-              </div>
+              <div style={{ fontWeight: 700, fontSize: "1rem", color: "var(--text-muted, #64748B)", marginBottom: "0.5rem" }}>{plan.name}</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: "0.25rem" }}>
-                <span style={{ fontSize: "2.5rem", fontWeight: 800, color: "#0F172A" }}>{plan.price}</span>
-                <span style={{ color: "#64748B" }}>{plan.period}</span>
+                <span style={{ fontSize: "2.5rem", fontWeight: 800, color: "var(--text-heading, #0F172A)" }}>{plan.price}</span>
+                <span style={{ color: "var(--text-muted, #64748B)" }}>{plan.period}</span>
               </div>
-              <div style={{ color: "#64748B", fontSize: "0.875rem" }}>{plan.description}</div>
+              <div style={{ color: "var(--text-muted, #64748B)", fontSize: "0.875rem" }}>{plan.description}</div>
             </div>
 
             <ul style={{ listStyle: "none", padding: 0, marginBottom: "1.5rem" }}>
               {plan.features.map((f) => (
-                <li
-                  key={f}
-                  style={{
-                    padding: "0.375rem 0",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    fontSize: "0.9rem",
-                  }}
-                >
+                <li key={f} style={{ padding: "0.375rem 0", display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.9rem", color: "var(--foreground, #0F172A)" }}>
                   <span style={{ color: "#22C55E", fontWeight: 700 }}>✓</span>
                   {f}
                 </li>
