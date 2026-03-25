@@ -70,13 +70,13 @@ export default function LoginPage() {
               <path d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0124 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z" fill="#4CAF50"/>
               <path d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 01-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z" fill="#1976D2"/>
             </svg>
-            Continuar com Google
+            {t.login.googleBtn}
           </a>
 
           {/* Divider */}
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", margin: "1.25rem 0" }}>
             <div style={{ flex: 1, height: 1, background: "var(--border, #E2E8F0)" }} />
-            <span style={{ fontSize: "0.75rem", color: "var(--text-muted, #94A3B8)" }}>ou entre com e-mail</span>
+            <span style={{ fontSize: "0.75rem", color: "var(--text-muted, #94A3B8)" }}>{t.login.orEmail}</span>
             <div style={{ flex: 1, height: 1, background: "var(--border, #E2E8F0)" }} />
           </div>
 

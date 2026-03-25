@@ -67,10 +67,39 @@ export interface LoginTranslations {
   noAccount: string;
   createAccount: string;
   backHome: string;
+  googleBtn: string;
+  orEmail: string;
+}
+
+export interface RegisterTranslations {
+  googleBtn: string;
+  orEmail: string;
+  nameLabel: string;
+  namePlaceholder: string;
+  passwordPlaceholder: string;
+  confirmLabel: string;
+  confirmPlaceholder: string;
+  charsLeft: string;
+  passwordsMatch: string;
+  passwordsMismatch: string;
+  submitting: string;
+  legal: string;
+  alreadyAccount: string;
+  backHome: string;
+  // Validation errors
+  nameMin: string;
+  emailInvalid: string;
+  passwordMin: string;
+  passwordNoMatch: string;
+  // Per-plan text
+  proTitle: string; proSubtitle: string; proBadge: string; proBtn: string;
+  trialTitle: string; trialSubtitle: string; trialBadge: string; trialBtn: string;
+  freeTitle: string; freeSubtitle: string; freeBtn: string;
 }
 
 export interface Translations {
   login: LoginTranslations;
+  register: RegisterTranslations;
   nav: {
     features: string;
     pricing: string;
@@ -138,6 +167,31 @@ export const translations: Record<Lang, Translations> = {
       noAccount: 'Não tem conta?',
       createAccount: 'Criar conta grátis',
       backHome: '← Voltar ao início',
+      googleBtn: 'Continuar com Google',
+      orEmail: 'ou entre com e-mail',
+    },
+    register: {
+      googleBtn: 'Continuar com Google',
+      orEmail: 'ou cadastre-se com e-mail',
+      nameLabel: 'Nome completo',
+      namePlaceholder: 'Seu nome',
+      passwordPlaceholder: 'Mínimo 8 caracteres',
+      confirmLabel: 'Confirmar senha',
+      confirmPlaceholder: 'Repita a senha',
+      charsLeft: 'caractere(s) restante(s)',
+      passwordsMatch: '✓ Senhas coincidem',
+      passwordsMismatch: 'As senhas não coincidem',
+      submitting: 'Criando conta…',
+      legal: 'Ao criar uma conta, você concorda com os Termos de Uso e Política de Privacidade.',
+      alreadyAccount: 'Já tem conta?',
+      backHome: '← Voltar ao início',
+      nameMin: 'O nome deve ter pelo menos 2 caracteres.',
+      emailInvalid: 'Informe um e-mail válido.',
+      passwordMin: 'A senha deve ter pelo menos 8 caracteres.',
+      passwordNoMatch: 'As senhas não coincidem.',
+      proTitle: 'Criar sua conta PRO', proSubtitle: 'R$ 97/mês — Acesso completo, contas e transações ilimitadas', proBadge: '💎 Plano PRO', proBtn: 'Assinar PRO',
+      trialTitle: 'Começar trial gratuito', trialSubtitle: '14 dias com tudo ilimitado, sem cartão de crédito', trialBadge: '✨ 14 dias grátis', trialBtn: 'Iniciar trial grátis',
+      freeTitle: 'Criar conta grátis', freeSubtitle: '14 dias de trial com tudo ilimitado', freeBtn: 'Criar conta grátis',
     },
     nav: {
       features: 'Funcionalidades',
@@ -263,6 +317,31 @@ export const translations: Record<Lang, Translations> = {
       noAccount: "Don't have an account?",
       createAccount: 'Create free account',
       backHome: '← Back to home',
+      googleBtn: 'Continue with Google',
+      orEmail: 'or sign in with email',
+    },
+    register: {
+      googleBtn: 'Continue with Google',
+      orEmail: 'or sign up with email',
+      nameLabel: 'Full name',
+      namePlaceholder: 'Your name',
+      passwordPlaceholder: 'Minimum 8 characters',
+      confirmLabel: 'Confirm password',
+      confirmPlaceholder: 'Repeat password',
+      charsLeft: 'character(s) remaining',
+      passwordsMatch: '✓ Passwords match',
+      passwordsMismatch: 'Passwords do not match',
+      submitting: 'Creating account…',
+      legal: 'By creating an account, you agree to our Terms of Use and Privacy Policy.',
+      alreadyAccount: 'Already have an account?',
+      backHome: '← Back to home',
+      nameMin: 'Name must be at least 2 characters.',
+      emailInvalid: 'Please enter a valid email.',
+      passwordMin: 'Password must be at least 8 characters.',
+      passwordNoMatch: 'Passwords do not match.',
+      proTitle: 'Create your PRO account', proSubtitle: '$19/mo — Full access, unlimited accounts and transactions', proBadge: '💎 PRO Plan', proBtn: 'Subscribe PRO',
+      trialTitle: 'Start free trial', trialSubtitle: '14 days with everything unlimited, no credit card required', trialBadge: '✨ 14 days free', trialBtn: 'Start free trial',
+      freeTitle: 'Create free account', freeSubtitle: '14-day trial with everything unlimited', freeBtn: 'Create free account',
     },
     nav: {
       features: 'Features',
@@ -388,6 +467,31 @@ export const translations: Record<Lang, Translations> = {
       noAccount: 'Pas encore de compte ?',
       createAccount: 'Créer un compte gratuit',
       backHome: "← Retour à l'accueil",
+      googleBtn: 'Continuer avec Google',
+      orEmail: 'ou connectez-vous par e-mail',
+    },
+    register: {
+      googleBtn: 'Continuer avec Google',
+      orEmail: "ou inscrivez-vous par e-mail",
+      nameLabel: 'Nom complet',
+      namePlaceholder: 'Votre nom',
+      passwordPlaceholder: 'Minimum 8 caractères',
+      confirmLabel: 'Confirmer le mot de passe',
+      confirmPlaceholder: 'Répétez le mot de passe',
+      charsLeft: 'caractère(s) restant(s)',
+      passwordsMatch: '✓ Mots de passe identiques',
+      passwordsMismatch: 'Les mots de passe ne correspondent pas',
+      submitting: 'Création du compte…',
+      legal: "En créant un compte, vous acceptez nos Conditions d'utilisation et notre Politique de confidentialité.",
+      alreadyAccount: 'Vous avez déjà un compte ?',
+      backHome: "← Retour à l'accueil",
+      nameMin: 'Le nom doit comporter au moins 2 caractères.',
+      emailInvalid: 'Veuillez saisir un e-mail valide.',
+      passwordMin: 'Le mot de passe doit comporter au moins 8 caractères.',
+      passwordNoMatch: 'Les mots de passe ne correspondent pas.',
+      proTitle: 'Créer votre compte PRO', proSubtitle: '19 CAD/mois — Accès complet, comptes et transactions illimités', proBadge: '💎 Plan PRO', proBtn: "S'abonner PRO",
+      trialTitle: "Démarrer l'essai gratuit", trialSubtitle: '14 jours avec tout illimité, sans carte de crédit', trialBadge: '✨ 14 jours gratuits', trialBtn: "Démarrer l'essai",
+      freeTitle: 'Créer un compte gratuit', freeSubtitle: "Essai de 14 jours avec tout illimité", freeBtn: 'Créer un compte gratuit',
     },
     nav: {
       features: 'Fonctionnalités',
