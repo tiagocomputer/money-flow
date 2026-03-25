@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { useAppContext } from "@/app/context/AppContext";
+import ExportMenu from "@/components/ExportMenu";
 
 interface Transaction {
   id: string; amount: number; type: string; description?: string;
@@ -68,9 +69,24 @@ export default function TransactionsPage() {
           <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--text-heading)" }}>{d.title}</h1>
           <p style={{ color: "var(--text-muted)", fontSize: "0.875rem" }}>{d.subtitle}</p>
         </div>
-        <button onClick={() => setShowForm(true)} style={{ background: "#2563EB", color: "white", padding: "0.625rem 1.25rem", borderRadius: 8, fontWeight: 700, border: "none", cursor: "pointer", fontSize: "0.875rem", whiteSpace: "nowrap" }}>
-          {d.newBtn}
-        </button>
+        <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+          <ExportMenu
+            filename="transacoes"
+            pdfTitle="Relatório de Transações"
+            headers={["Descrição", "Categoria", "Conta", "Data", "Tipo", "Valor"]}
+            rows={() => filtered.map((tx) => [
+              tx.description ?? "—",
+              tx.category?.name ?? "—",
+              tx.account.name,
+              formatDate(tx.date),
+              tx.type === "INCOME" ? "Receita" : tx.type === "EXPENSE" ? "Despesa" : "Transferência",
+              `${tx.type === "INCOME" ? "+" : "-"}${formatCurrency(tx.amount)}`,
+            ])}
+          />
+          <button onClick={() => setShowForm(true)} style={{ background: "#2563EB", color: "white", padding: "0.625rem 1.25rem", borderRadius: 8, fontWeight: 700, border: "none", cursor: "pointer", fontSize: "0.875rem", whiteSpace: "nowrap" }}>
+            {d.newBtn}
+          </button>
+        </div>
       </div>
 
       {/* Filter pills */}

@@ -7,6 +7,7 @@ import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, PieChart, Pie, Cell, Legend,
 } from "recharts";
+import ExportMenu from "@/components/ExportMenu";
 
 const COLORS = ["#2563EB", "#0EA5E9", "#6366F1", "#EC4899", "#F59E0B", "#22C55E", "#8B5CF6"];
 
@@ -47,9 +48,23 @@ export default function DashboardPage() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-      <div>
-        <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--text-heading)" }}>{d.home.title}</h1>
-        <p style={{ color: "var(--text-muted)", fontSize: "0.875rem" }}>{d.home.subtitle}</p>
+      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
+        <div>
+          <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--text-heading)" }}>{d.home.title}</h1>
+          <p style={{ color: "var(--text-muted)", fontSize: "0.875rem" }}>{d.home.subtitle}</p>
+        </div>
+        <ExportMenu
+          filename="resumo-financeiro"
+          pdfTitle="Resumo Financeiro"
+          headers={["Métrica", "Valor"]}
+          rows={() => [
+            ["Saldo Total", formatCurrency(data.totalBalance)],
+            ["Receitas do Mês", formatCurrency(data.income)],
+            ["Despesas do Mês", formatCurrency(data.expenses)],
+            ["Fluxo de Caixa", formatCurrency(data.cashFlow)],
+            ...data.accounts.map((a) => [`Conta: ${a.name}`, formatCurrency(a.balance)]),
+          ]}
+        />
       </div>
 
       {data.notifications.length > 0 && (

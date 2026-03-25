@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { formatCurrency } from "@/lib/utils";
 import { useAppContext } from "@/app/context/AppContext";
+import ExportMenu from "@/components/ExportMenu";
 
 interface Budget {
   id: string; name: string; amount: number; spent: number; period: string;
@@ -56,9 +57,29 @@ export default function BudgetsPage() {
           <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--text-heading)" }}>{d.title}</h1>
           <p style={{ color: "var(--text-muted)", fontSize: "0.875rem" }}>{d.subtitle}</p>
         </div>
-        <button onClick={() => setShowForm(true)} style={{ background: "#2563EB", color: "white", padding: "0.625rem 1.25rem", borderRadius: 8, fontWeight: 700, border: "none", cursor: "pointer", fontSize: "0.875rem", whiteSpace: "nowrap" }}>
-          {d.newBtn}
-        </button>
+        <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+          <ExportMenu
+            filename="orcamentos"
+            pdfTitle="Relatório de Orçamentos"
+            headers={["Nome", "Categoria", "Período", "Limite", "Gasto", "Restante", "Status"]}
+            rows={() => budgets.map((b) => {
+              const pct = (b.spent / b.amount) * 100;
+              const over = b.spent > b.amount;
+              return [
+                b.name,
+                b.category?.name ?? "Geral",
+                periodLabel(b.period),
+                formatCurrency(b.amount),
+                formatCurrency(b.spent),
+                formatCurrency(Math.max(b.amount - b.spent, 0)),
+                over ? "Excedido" : pct >= 80 ? "Atenção" : "OK",
+              ];
+            })}
+          />
+          <button onClick={() => setShowForm(true)} style={{ background: "#2563EB", color: "white", padding: "0.625rem 1.25rem", borderRadius: 8, fontWeight: 700, border: "none", cursor: "pointer", fontSize: "0.875rem", whiteSpace: "nowrap" }}>
+            {d.newBtn}
+          </button>
+        </div>
       </div>
 
       {/* Form Modal */}

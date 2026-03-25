@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { useAppContext } from "@/app/context/AppContext";
+import ExportMenu from "@/components/ExportMenu";
 
 interface Goal {
   id: string; name: string; targetAmount: number; currentAmount: number;
@@ -58,9 +59,27 @@ export default function GoalsPage() {
           <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--text-heading)" }}>{d.title}</h1>
           <p style={{ color: "var(--text-muted)", fontSize: "0.875rem" }}>{d.subtitle}</p>
         </div>
-        <button onClick={() => setShowForm(true)} style={{ background: "#2563EB", color: "white", padding: "0.625rem 1.25rem", borderRadius: 8, fontWeight: 700, border: "none", cursor: "pointer", fontSize: "0.875rem", whiteSpace: "nowrap" }}>
-          {d.newBtn}
-        </button>
+        <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+          <ExportMenu
+            filename="metas"
+            pdfTitle="Relatório de Metas Financeiras"
+            headers={["Meta", "Prazo", "Valor Alvo", "Valor Atual", "Progresso", "Status"]}
+            rows={() => goals.map((g) => {
+              const pct = Math.min((g.currentAmount / g.targetAmount) * 100, 100);
+              return [
+                g.name,
+                g.deadline ? formatDate(g.deadline) : "Sem prazo",
+                formatCurrency(g.targetAmount),
+                formatCurrency(g.currentAmount),
+                `${pct.toFixed(1)}%`,
+                g.currentAmount >= g.targetAmount ? "Concluída" : "Em andamento",
+              ];
+            })}
+          />
+          <button onClick={() => setShowForm(true)} style={{ background: "#2563EB", color: "white", padding: "0.625rem 1.25rem", borderRadius: 8, fontWeight: 700, border: "none", cursor: "pointer", fontSize: "0.875rem", whiteSpace: "nowrap" }}>
+            {d.newBtn}
+          </button>
+        </div>
       </div>
 
       {/* Create Modal */}
