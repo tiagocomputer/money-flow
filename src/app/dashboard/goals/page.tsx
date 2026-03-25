@@ -14,6 +14,7 @@ export default function GoalsPage() {
   const { t } = useAppContext();
   const d = t.dashboard.goals;
   const c = t.dashboard;
+  const ex = t.dashboard.export;
 
   const [goals, setGoals]           = useState<Goal[]>([]);
   const [loading, setLoading]       = useState(true);
@@ -61,18 +62,18 @@ export default function GoalsPage() {
         </div>
         <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
           <ExportMenu
-            filename="metas"
-            pdfTitle="Relatório de Metas Financeiras"
-            headers={["Meta", "Prazo", "Valor Alvo", "Valor Atual", "Progresso", "Status"]}
+            filename="goals"
+            pdfTitle={d.title}
+            headers={[d.nameLabel, d.deadlineLabel, d.targetLabel, d.currentLabel, ex.progress, ex.status]}
             rows={() => goals.map((g) => {
               const pct = Math.min((g.currentAmount / g.targetAmount) * 100, 100);
               return [
                 g.name,
-                g.deadline ? formatDate(g.deadline) : "Sem prazo",
+                g.deadline ? formatDate(g.deadline) : ex.noDeadline,
                 formatCurrency(g.targetAmount),
                 formatCurrency(g.currentAmount),
                 `${pct.toFixed(1)}%`,
-                g.currentAmount >= g.targetAmount ? "Concluída" : "Em andamento",
+                g.currentAmount >= g.targetAmount ? ex.done : ex.inProgress,
               ];
             })}
           />

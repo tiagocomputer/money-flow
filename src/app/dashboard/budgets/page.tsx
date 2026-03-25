@@ -15,6 +15,7 @@ export default function BudgetsPage() {
   const { t } = useAppContext();
   const d = t.dashboard.budgets;
   const c = t.dashboard;
+  const ex = t.dashboard.export;
 
   const [budgets, setBudgets]       = useState<Budget[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -59,20 +60,20 @@ export default function BudgetsPage() {
         </div>
         <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
           <ExportMenu
-            filename="orcamentos"
-            pdfTitle="Relatório de Orçamentos"
-            headers={["Nome", "Categoria", "Período", "Limite", "Gasto", "Restante", "Status"]}
+            filename="budgets"
+            pdfTitle={d.title}
+            headers={[d.nameLabel, d.categoryLabel, d.periodLabel, d.limitLabel, ex.spent, d.remaining, ex.status]}
             rows={() => budgets.map((b) => {
               const pct = (b.spent / b.amount) * 100;
               const over = b.spent > b.amount;
               return [
                 b.name,
-                b.category?.name ?? "Geral",
+                b.category?.name ?? d.general,
                 periodLabel(b.period),
                 formatCurrency(b.amount),
                 formatCurrency(b.spent),
                 formatCurrency(Math.max(b.amount - b.spent, 0)),
-                over ? "Excedido" : pct >= 80 ? "Atenção" : "OK",
+                over ? ex.exceeded : pct >= 80 ? ex.warning : ex.ok,
               ];
             })}
           />

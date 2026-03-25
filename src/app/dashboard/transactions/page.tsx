@@ -71,15 +71,15 @@ export default function TransactionsPage() {
         </div>
         <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
           <ExportMenu
-            filename="transacoes"
-            pdfTitle="Relatório de Transações"
-            headers={["Descrição", "Categoria", "Conta", "Data", "Tipo", "Valor"]}
+            filename="transactions"
+            pdfTitle={d.title}
+            headers={[d.colDesc, d.colCategory, d.colAccount, d.colDate, d.typeLabel, d.colAmount]}
             rows={() => filtered.map((tx) => [
               tx.description ?? "—",
               tx.category?.name ?? "—",
               tx.account.name,
               formatDate(tx.date),
-              tx.type === "INCOME" ? "Receita" : tx.type === "EXPENSE" ? "Despesa" : "Transferência",
+              tx.type === "INCOME" ? d.typeIncome : tx.type === "EXPENSE" ? d.typeExpense : d.typeTransfer,
               `${tx.type === "INCOME" ? "+" : "-"}${formatCurrency(tx.amount)}`,
             ])}
           />

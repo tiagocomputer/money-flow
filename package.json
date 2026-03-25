@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "postinstall": "prisma generate",
-    "seed:tiago": "tsx prisma/seed-tiago.ts"
+    "seed:tiago": "npx tsx prisma/seed-tiago.ts"
   },
   "dependencies": {
     "@libsql/client": "^0.17.2",

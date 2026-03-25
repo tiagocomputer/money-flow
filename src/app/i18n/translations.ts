@@ -45,6 +45,16 @@ export interface DashboardTranslations {
     reached: string; remaining: string; deadline: string;
     deleteConfirm: string; updateAction: string;
   };
+  export: {
+    btn: string;
+    excelLabel: string; excelHint: string;
+    pdfLabel: string; pdfHint: string;
+    generatedOn: string; autoReport: string;
+    noDeadline: string; progress: string;
+    status: string; metric: string; value: string;
+    spent: string;
+    done: string; inProgress: string; exceeded: string; warning: string; ok: string;
+  };
 }
 
 export interface LoginTranslations {
@@ -229,6 +239,16 @@ export const translations: Record<Lang, Translations> = {
         reached: 'Meta atingida!', remaining: 'faltam', deadline: 'Prazo:',
         deleteConfirm: 'Excluir meta?', updateAction: 'Atualizar',
       },
+      export: {
+        btn: 'Exportar',
+        excelLabel: 'Excel (.csv)', excelHint: 'Abrir no Excel ou Sheets',
+        pdfLabel: 'PDF', pdfHint: 'Salvar ou imprimir',
+        generatedOn: 'Gerado em', autoReport: 'MoneyFlow — Relatório gerado automaticamente',
+        noDeadline: 'Sem prazo', progress: 'Progresso',
+        status: 'Status', metric: 'Métrica', value: 'Valor',
+        spent: 'Gasto',
+        done: 'Concluída', inProgress: 'Em andamento', exceeded: 'Excedido', warning: 'Atenção', ok: 'OK',
+      },
     },
   },
 
@@ -344,6 +364,16 @@ export const translations: Record<Lang, Translations> = {
         reached: 'Goal reached!', remaining: 'left', deadline: 'Deadline:',
         deleteConfirm: 'Delete goal?', updateAction: 'Update',
       },
+      export: {
+        btn: 'Export',
+        excelLabel: 'Excel (.csv)', excelHint: 'Open in Excel or Sheets',
+        pdfLabel: 'PDF', pdfHint: 'Save or print',
+        generatedOn: 'Generated on', autoReport: 'MoneyFlow — Auto-generated report',
+        noDeadline: 'No deadline', progress: 'Progress',
+        status: 'Status', metric: 'Metric', value: 'Value',
+        spent: 'Spent',
+        done: 'Completed', inProgress: 'In progress', exceeded: 'Exceeded', warning: 'Warning', ok: 'OK',
+      },
     },
   },
 
@@ -458,6 +488,16 @@ export const translations: Record<Lang, Translations> = {
         empty: 'Aucun objectif créé', emptyHint: 'Définissez des objectifs financiers pour suivre vos progrès',
         reached: 'Objectif atteint !', remaining: 'restant', deadline: 'Échéance :',
         deleteConfirm: "Supprimer l'objectif ?", updateAction: 'Mettre à jour',
+      },
+      export: {
+        btn: 'Exporter',
+        excelLabel: 'Excel (.csv)', excelHint: 'Ouvrir dans Excel ou Sheets',
+        pdfLabel: 'PDF', pdfHint: 'Enregistrer ou imprimer',
+        generatedOn: 'Généré le', autoReport: 'MoneyFlow — Rapport généré automatiquement',
+        noDeadline: 'Sans échéance', progress: 'Progression',
+        status: 'Statut', metric: 'Indicateur', value: 'Valeur',
+        spent: 'Dépensé',
+        done: 'Terminé', inProgress: 'En cours', exceeded: 'Dépassé', warning: 'Attention', ok: 'OK',
       },
     },
   },

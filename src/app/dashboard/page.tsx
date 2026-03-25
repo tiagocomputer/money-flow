@@ -25,6 +25,7 @@ interface DashboardData {
 export default function DashboardPage() {
   const { t } = useAppContext();
   const d = t.dashboard;
+  const ex = t.dashboard.export;
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -54,15 +55,15 @@ export default function DashboardPage() {
           <p style={{ color: "var(--text-muted)", fontSize: "0.875rem" }}>{d.home.subtitle}</p>
         </div>
         <ExportMenu
-          filename="resumo-financeiro"
-          pdfTitle="Resumo Financeiro"
-          headers={["Métrica", "Valor"]}
+          filename="dashboard"
+          pdfTitle={d.home.title}
+          headers={[ex.metric, ex.value]}
           rows={() => [
-            ["Saldo Total", formatCurrency(data.totalBalance)],
-            ["Receitas do Mês", formatCurrency(data.income)],
-            ["Despesas do Mês", formatCurrency(data.expenses)],
-            ["Fluxo de Caixa", formatCurrency(data.cashFlow)],
-            ...data.accounts.map((a) => [`Conta: ${a.name}`, formatCurrency(a.balance)]),
+            [d.home.totalBalance, formatCurrency(data.totalBalance)],
+            [d.home.income, formatCurrency(data.income)],
+            [d.home.expenses, formatCurrency(data.expenses)],
+            [d.home.cashFlow, formatCurrency(data.cashFlow)],
+            ...data.accounts.map((a) => [`${a.name}`, formatCurrency(a.balance)]),
           ]}
         />
       </div>

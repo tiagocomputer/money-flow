@@ -14,7 +14,7 @@ export function exportCSV(headers: string[], rows: string[][], filename: string)
   URL.revokeObjectURL(url);
 }
 
-export function exportPDF(title: string, headers: string[], rows: string[][]) {
+export function exportPDF(title: string, headers: string[], rows: string[][], generatedOn = "Generated on", footer = "MoneyFlow — Auto-generated report") {
   const win = window.open("", "_blank");
   if (!win) return;
 
@@ -46,13 +46,13 @@ export function exportPDF(title: string, headers: string[], rows: string[][]) {
 <body>
   <div class="header">
     <h1>${title}</h1>
-    <p>Gerado em ${new Date().toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" })} • MoneyFlow</p>
+    <p>${generatedOn} ${new Date().toLocaleDateString(undefined, { day: "2-digit", month: "long", year: "numeric" })} • MoneyFlow</p>
   </div>
   <table>
     <thead><tr>${headers.map((h) => `<th>${h}</th>`).join("")}</tr></thead>
     <tbody>${tableRows}</tbody>
   </table>
-  <div class="footer">MoneyFlow — Relatório gerado automaticamente</div>
+  <div class="footer">${footer}</div>
   <script>setTimeout(()=>{window.print();},300);</script>
 </body>
 </html>`);
