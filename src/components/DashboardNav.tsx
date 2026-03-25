@@ -113,6 +113,23 @@ export default function DashboardNav({ user }: Props) {
           <ThemeLangControls dropdownDir="up" compact />
         </div>
 
+        {/* Showcase link */}
+        <div style={{ padding: "0.5rem 1rem", borderTop: `1px solid ${borderCol}` }}>
+          <Link
+            href="/showcase"
+            onClick={close}
+            style={{
+              display: "flex", alignItems: "center", gap: "0.5rem",
+              padding: "0.4375rem 0.625rem", borderRadius: 8,
+              textDecoration: "none", fontSize: "0.75rem",
+              color: isDark ? "#64748B" : "#94A3B8", fontWeight: 500,
+              transition: "background 0.15s",
+            }}
+          >
+            <span>🎨</span> Component Showcase
+          </Link>
+        </div>
+
         {/* User section */}
         <div style={{ padding: "0.75rem 1rem", borderTop: `1px solid ${borderCol}` }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "0.75rem" }}>
